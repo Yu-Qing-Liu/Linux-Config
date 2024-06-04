@@ -1,0 +1,20 @@
+*
+
+!*/
+
+
+# track this file
+
+
+!.gitignore
+
+
+# whitelist
+
+!alacritty/
+!i3/
+!rofi/
+!ranger/
+!picom/
+!nvim/
+!polybar/
