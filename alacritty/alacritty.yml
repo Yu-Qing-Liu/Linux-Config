@@ -1,0 +1,47 @@
+colors:
+  primary:
+      background: '0x000000'
+      foreground: '0x8ec07c'
+  normal:
+    black:   '0x32302f'
+    red:     '0xea6962'
+    green:   '0xa9b665'
+    yellow:  '0xffa500'
+    blue:    '0xffa500'
+    magenta: '0xd3869b'
+    cyan:    '0x89b482'
+    white:   '0xd4be98'
+  bright:
+    black:   '0x32302f'
+    red:     '0xea6962'
+    green:   '0xa9b665'
+    yellow:  '0xd8a657'
+    blue:    '0x7daea3'
+    magenta: '0xd3869b'
+    cyan:    '0x89b482'
+    white:   '0xd4be98'
+
+  indexed_colors:
+    - { index: 16, color: '0xfe8019' }
+    - { index: 17, color: '0xd65d0e' }
+    - { index: 18, color: '0x3c3836' }
+    - { index: 19, color: '0x504945' }
+    - { index: 20, color: '0xbdae93' }
+    - { index: 21, color: '0xebdbb2' }
+
+font:
+  size: 14.0
+
+window:
+  opacity: 0.30
+
+cursor:
+  style:
+    shape: Block
+    blinking: Always
+  blink_interval: 350
+  unfocused_hollow: true
+
+key_bindings:
+  - { key: Return,   mods: Control|Shift, action: SpawnNewInstance }
+

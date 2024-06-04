@@ -11,10 +11,10 @@
 
 # whitelist
 
-!alacritty/
-!i3/
-!rofi/
-!ranger/
-!picom/
-!nvim/
-!polybar/
+!alacritty/**
+!i3/**
+!rofi/**
+!ranger/**
+!picom/**
+!nvim/**
+!polybar/**
