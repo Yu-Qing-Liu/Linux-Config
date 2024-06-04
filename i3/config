@@ -212,7 +212,7 @@ gaps inner 12px
 
 # Define RGBA colors with transparency
 set $transparency1 4D
-set $transparency2 4D
+set $transparency2 99
 
 # class                   border                   backgr.                  text       indicator                child_border
 client.focused            #399a9c$transparency2    #399a9c$transparency2    #ffffff    #000000$transparency1    #000000$transparency1
