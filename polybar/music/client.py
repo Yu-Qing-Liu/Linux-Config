@@ -4,7 +4,7 @@ import socket
 import sys
 
 HOST = "127.0.0.1"  # The server's hostname or IP address
-PORT = 65432  # The port used by the server
+PORT = 49153  # The port used by the server
 
 # Function to send a command to the server
 def send_command(command):
@@ -14,7 +14,7 @@ def send_command(command):
             s.sendall(command.encode())
             s.close()
     except Exception as e:
-        print("Error:", e)
+        exit(1)
 
 def send_query(command):
     try:
@@ -41,11 +41,10 @@ def send_query(command):
             s.close()
 
     except Exception as e:
-        print("Error:", e)
+        exit(1)
 
 if len(sys.argv) < 2:
-    print("Invalid command. Usage:")
-    sys.exit(1)
+    exit(1)
 
 command = sys.argv[1]
 
@@ -54,5 +53,4 @@ if command in ["start", "stop", "pause", "next", "prev"]:
 elif command in ["isStopped", "isPaused", "songName", "progress"]:
     send_query(command)
 else:
-    print("Invalid command. Usage:")
-    sys.exit(1)
+    exit(1)

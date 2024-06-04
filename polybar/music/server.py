@@ -8,7 +8,7 @@ import vlc
 
 VIDEO_DIR = os.path.expanduser("~/Music")  # Directory containing music videos
 HOST = "127.0.0.1"  # The server's hostname or IP address
-PORT = 65432  # The port used by the server
+PORT = 49153  # The port used by the server
 player = None
 media_player = None
 isPaused = False
