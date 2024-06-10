@@ -44,7 +44,8 @@ yellow = "0xffa500"
 
 [colors.primary]
 background = "0x000000"
-foreground = "0x8ec07c"
+#foreground = "0x8ec07c"
+foreground = "0xc3e600" 
 
 [cursor]
 blink_interval = 350
@@ -55,7 +56,7 @@ blinking = "Always"
 shape = "Block"
 
 [font]
-size = 14.0
+size = 12.5
 
 [[keyboard.bindings]]
 action = "SpawnNewInstance"
@@ -63,4 +64,4 @@ key = "Return"
 mods = "Control|Shift"
 
 [window]
-opacity = 0.35
+opacity = 0.65
