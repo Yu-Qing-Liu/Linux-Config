@@ -211,10 +211,10 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 gaps inner 12px
 
 # Borders
-new_window pixel 0
+new_window normal 0 px
 
 # Define RGBA colors with transparency
-set $transparency1 A6
+set $transparency1 FF
 set $transparency2 CD
 
 # class                   border                   backgr.                  text       indicator                child_border
