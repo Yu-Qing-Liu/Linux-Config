@@ -44,11 +44,10 @@ yellow = "0xffa500"
 
 [colors.primary]
 background = "0x000000"
-#foreground = "0x8ec07c"
 foreground = "0xc3e600" 
 
 [cursor]
-blink_interval = 350
+blink_interval = 200
 unfocused_hollow = true
 
 [cursor.style]
@@ -64,4 +63,4 @@ key = "Return"
 mods = "Control|Shift"
 
 [window]
-opacity = 0.65
+opacity = 0.6
