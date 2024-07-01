@@ -1,0 +1,11 @@
+[Unit]
+Description=Server Python Script
+
+[Service]
+ExecStart=/usr/bin/python3 /home/yuqingliu/.config/polybar/music/server.py
+WorkingDirectory=/home/yuqingliu/.config/polybar/music/
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=default.target
