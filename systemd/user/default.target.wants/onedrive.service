@@ -1,0 +1,15 @@
+[Unit]
+Description=OneDrive Sync Service
+Requires=network-online.target
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=yuqingliu
+ExecStartPre=/usr/local/bin/check_internet.sh
+ExecStart=/usr/bin/onedrive --monitor
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=default.target
