@@ -9,6 +9,7 @@ function is_docker_desktop_active() {
 if is_docker_desktop_active; then
     echo "%{B#3FFFFFFF}%{u#39949C}%{+u}  %{T3}%{T1}  %{-u}%{B-} "
 else
+    systemctl --user stop docker-desktop
     echo "%{B#0FFFFFFF}%{u#373B41}%{+u}  %{T3}%{T1}  %{-u}%{B-} "
 fi
 
