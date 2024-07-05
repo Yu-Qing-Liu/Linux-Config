@@ -34,7 +34,7 @@ root.configure(bg="black")
 text_output = tk.Text(root, wrap=tk.WORD, bg="black", fg="white")
 text_output.pack(fill=tk.BOTH, expand=False, padx=20, pady=10)
 
-Desired_font = tkinter.font.Font(family = "Mono", size = 8, weight = "bold")
+Desired_font = tkinter.font.Font(family = "Mono", size = 9, weight = "bold")
 text_output.configure(font = Desired_font)
 
 list_user_services()
