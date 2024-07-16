@@ -24,6 +24,9 @@ return {
     {'folke/neodev.nvim' },
   },
   config = function ()
+    require'lspconfig'.dartls.setup{ 
+      cmd = { "dart", 'language-server', '--protocol=lsp' }, 
+    }
     require('mason').setup()
     require('mason-lspconfig').setup({
       -- Install these LSPs automatically
