@@ -1,9 +1,9 @@
+
 -- LSP Support
 return {
   -- LSP Configuration
   -- https://github.com/neovim/nvim-lspconfig
   'neovim/nvim-lspconfig',
-  event = 'VeryLazy',
   dependencies = {
     -- LSP Management
     -- https://github.com/williamboman/mason.nvim
@@ -24,9 +24,6 @@ return {
     {'folke/neodev.nvim' },
   },
   config = function ()
-    require'lspconfig'.dartls.setup{ 
-      cmd = { "dart", 'language-server', '--protocol=lsp' }, 
-    }
     require('mason').setup()
     require('mason-lspconfig').setup({
       -- Install these LSPs automatically
@@ -89,6 +86,12 @@ return {
         },
       },
     }
+     
+    -- Dart LSP settings
+    lspconfig.dartls.setup {
+      capabilities = lsp_capabilities,
+      cmd = { "dart", 'language-server', '--protocol=lsp' },
+    }
 
     -- Globally configure all LSP floating preview popups (like hover, signature help, etc)
     local open_floating_preview = vim.lsp.util.open_floating_preview
@@ -100,4 +103,3 @@ return {
 
   end
 }
-

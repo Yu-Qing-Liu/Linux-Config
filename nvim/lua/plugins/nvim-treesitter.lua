@@ -17,6 +17,7 @@ return {
     ensure_installed = {
       'lua',
       'comment',
+      'dart',
     },
   },
   config = function (_, opts)
