@@ -15,6 +15,14 @@ opt.expandtab = true
 opt.autoindent = true
 vim.bo.softtabstop = 4
 
+-- Define autocmds to set options for specific filetypes
+vim.cmd([[
+  augroup FiletypeSettings
+    autocmd!
+    autocmd FileType dart,lua,html setlocal tabstop=2 shiftwidth=2
+  augroup END
+]])
+
 -- Line Wrapping
 opt.wrap = false
 
