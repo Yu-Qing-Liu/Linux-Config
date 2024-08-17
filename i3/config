@@ -207,6 +207,9 @@ exec_always feh --bg-fill /home/yuqingliu/Pictures/Mountain.png
 # Polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
+# Disable screen sleep 
+exec --no-startup-id xset s blank
+
 # Gaps
 gaps inner 12px
 
