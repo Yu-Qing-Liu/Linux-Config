@@ -19,7 +19,7 @@ vim.bo.softtabstop = 4
 vim.cmd([[
   augroup FiletypeSettings
     autocmd!
-    autocmd FileType dart,lua,html setlocal tabstop=2 shiftwidth=2
+    autocmd FileType dart,lua,html,javascript,typescriptreact setlocal tabstop=2 shiftwidth=2
   augroup END
 ]])
 
