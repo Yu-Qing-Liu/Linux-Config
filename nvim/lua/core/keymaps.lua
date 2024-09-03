@@ -15,7 +15,7 @@ keymap.set("v", ">", ">gv", {noremap = true}) -- visual mode
 
 -- Split window management
 keymap.set("n", "<leader>sv", "<C-w>v") -- split window vertically
-keymap.set("n", "<leader>s", "<C-w>s") -- split window horizontally
+keymap.set("n", "<leader>ss", "<C-w>s") -- split window horizontally
 keymap.set("n", "<leader>se", "<C-w>=") -- make split windows equal width
 keymap.set("n", "<leader>sx", ":close<CR>") -- close split window
 keymap.set("n", "<leader>sj", "<C-w>-") -- make split window height shorter
