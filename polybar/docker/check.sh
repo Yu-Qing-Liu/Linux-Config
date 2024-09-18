@@ -2,7 +2,7 @@
 
 # Function to check if the Docker Desktop window is active
 function is_docker_desktop_active() {
-    xdotool search --onlyvisible --classname "docker desktop" > /dev/null 2>&1
+    xdotool search --classname "docker desktop" > /dev/null 2>&1
 }
 
 function is_docker_process_active() {

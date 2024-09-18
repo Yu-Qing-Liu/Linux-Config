@@ -62,3 +62,5 @@ opt.foldlevel = 20
 opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()" -- Utilize Treesitter folds
 
+-- VimTex
+vim.g.vimtex_quickfix_open_on_warning = 0
