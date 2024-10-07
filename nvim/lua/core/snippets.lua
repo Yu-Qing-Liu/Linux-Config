@@ -28,12 +28,12 @@ ls.add_snippets("tex", {
 
 ls.add_snippets("tex", {
   ls.parser.parse_snippet("\\right", [[
-  $\rightarrow$
+  \rightarrow
 ]])
 })
 
 ls.add_snippets("tex", {
   ls.parser.parse_snippet("\\Right", [[
-  $\Rightarrow$
+  \Rightarrow
 ]])
 })
