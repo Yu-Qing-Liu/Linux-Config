@@ -9,7 +9,7 @@ ls.add_snippets("tex", {
 \begin{minipage}{0.3\textwidth}
 \end{minipage}
 };
-\node[fancytitle, right=10pt] at (box.north west) {Inter-Process Communication};
+\node[fancytitle, right=10pt] at (box.north west) {};
 \end{tikzpicture}
 ]])
 })
