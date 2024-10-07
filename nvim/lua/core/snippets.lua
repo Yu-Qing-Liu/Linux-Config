@@ -13,3 +13,15 @@ ls.add_snippets("tex", {
 \end{tikzpicture}
 ]])
 })
+
+ls.add_snippets("tex", {
+  ls.parser.parse_snippet("right", [[
+  $\rightarrow$
+]])
+})
+
+ls.add_snippets("tex", {
+  ls.parser.parse_snippet("Right", [[
+  $\Rightarrow$
+]])
+})
