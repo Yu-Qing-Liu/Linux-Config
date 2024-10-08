@@ -1,0 +1,12 @@
+[Unit]
+Description=Remap Script
+
+[Service]
+ExecStart=/home/yuqingliu/.config/systemd/scripts/setup-xinput.sh
+WorkingDirectory=/home/yuqingliu/.config/systemd/scripts
+Environment="DISPLAY=:0"
+Environment="XAUTHORITY=/home/yuqingliu/.Xauthority"
+
+[Install]
+WantedBy=default.target
+
