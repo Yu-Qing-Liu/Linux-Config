@@ -1,14 +1,14 @@
 #!/bin/bash
 
 # Define variables
-retries=10
+retries=20
 delay=5
-devices=(13 19)  # List of device IDs to map
+devices=("Wacom HID 5201 Finger" "Wacom HID 5201 Pen Pen (0x80a104ec)")  # List of device IDs to map
 
 # Function to run xinput commands
 run_xinput() {
     for device in "${devices[@]}"; do
-        if ! xinput --map-to-output "$device" eDP-1; then
+        if ! xinput --map-to-output $device eDP-1; then
             echo "Failed to map device $device to output eDP-1"
             return 1  # Return failure if any command fails
         fi

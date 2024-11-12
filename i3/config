@@ -32,6 +32,9 @@ exec_always --no-startup-id xset s noblank
 exec_always --no-startup-id xinput set-prop "MSFT0001:00 06CB:CD3E Touchpad" "libinput Natural Scrolling Enabled" 1
 exec_always --no-startup-id xinput set-prop "MSFT0001:00 06CB:CD3E Touchpad" "libinput Tapping Enabled" 1
 
+# i3-autotiling
+exec_always --no-startup-id autotiling
+
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
 
