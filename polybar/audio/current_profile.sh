@@ -14,7 +14,7 @@ current_profile=$(pactl list cards | awk -v card_index="$card_index" '
 ' | xargs)
 
 if [[ "$current_profile" == "$headphones_profile" ]]; then
-    pactl set-card-profile $card_index "$speakers_profile"
+    echo "%{F#399A9C} %{T4}󰕾%{T1} %{T4}󰓡%{T1} %{T4}󰋋%{T-} %{F-}"
 else
-    pactl set-card-profile $card_index "$headphones_profile"
+    echo "%{F#399A9C} %{T4}󰋋%{T1} %{T4}󰓡%{T1} %{T4}󰕾%{T-} %{F-}"
 fi
