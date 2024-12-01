@@ -20,11 +20,11 @@ while read -r line; do
 done <<< "$(xrandr --listmonitors)"
 
 if [ -n "$TARGET_MONITOR1" ]; then
-    xrandr --output "$TARGET_MONITOR1" --rotate "right" --left-of "$TARGET_MONITOR2"
+    xrandr --output "$TARGET_MONITOR1" --rotate "left" --right-of "$TARGET_MONITOR2"
 fi
 
 if [ -n "$TARGET_MONITOR2" ]; then
-    xrandr --output "$TARGET_MONITOR2" --left-of "$TARGET_MONITOR3"
+    xrandr --output "$TARGET_MONITOR2" --right-of "$TARGET_MONITOR3"
 fi
 
 if [ -n "$TARGET_MONITOR3" ]; then
