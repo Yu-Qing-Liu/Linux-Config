@@ -26,6 +26,9 @@ exec --no-startup-id dex --autostart --environment i3
 # Monitors
 exec_always --no-startup-id bash -c '$HOME/.config/i3/monitors.sh'
 
+# Music server
+exec_always --no-startup-id bash -c '$HOME/.config/polybar/music/server.sh &'
+
 # Disable screenlock
 exec_always --no-startup-id xset s off
 exec_always --no-startup-id xset -dpms

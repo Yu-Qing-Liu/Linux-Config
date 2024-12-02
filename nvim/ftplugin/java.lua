@@ -54,10 +54,6 @@ local config = {
         -- The runtime name parameters need to match specific Java execution environments.  See https://github.com/tamago324/nlsp-settings.nvim/blob/2a52e793d4f293c0e1d61ee5794e3ff62bfbbb5d/schemas/_generated/jdtls.json#L317-L334
         runtimes = {
           {
-            name = "JavaSE-11",
-            path = "/usr/lib/jvm/java-11-openjdk",
-          },
-          {
             name = "JavaSE-17",
             path = "/usr/lib/jvm/java-17-openjdk",
           },

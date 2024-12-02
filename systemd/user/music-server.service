@@ -1,9 +1,0 @@
-[Unit]
-Description=Polybar Music Server
-
-[Service]
-Restart=always
-ExecStart=/home/admin/.config/polybar/music/server.sh
-
-[Install]
-WantedBy=default.target
