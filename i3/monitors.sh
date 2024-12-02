@@ -33,15 +33,13 @@ echo "Monitor 1: $TARGET_MONITOR1"
 echo "Monitor 2: $TARGET_MONITOR2"
 echo "Monitor 3: $TARGET_MONITOR3"
 
-# Configure monitors only if they are detected
-xrandr --output "$TARGET_MONITOR1" --rotate "left" --right-of "$TARGET_MONITOR2"
+xrandr --output "$TARGET_MONITOR3" --primary
 
 if [[ -n "$TARGET_MONITOR2" ]]; then
     xrandr --output "$TARGET_MONITOR2" --right-of "$TARGET_MONITOR3"
 fi
 
-xrandr --output "$TARGET_MONITOR3" --primary
+xrandr --output "$TARGET_MONITOR1" --rotate "left" --right-of "$TARGET_MONITOR2"
 
 # Set background image
 feh --bg-fill /home/admin/Pictures/Background.jpg
-
