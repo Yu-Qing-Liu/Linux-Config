@@ -7,14 +7,17 @@ HOST = "127.0.0.1"  # The server's hostname or IP address
 PORT = 49153  # The port used by the server
 
 # Function to send a command to the server
+
+
 def send_command(command):
     try:
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             s.connect((HOST, PORT))
             s.sendall(command.encode())
             s.close()
-    except Exception as e:
+    except Exception:
         exit(1)
+
 
 def send_query(command):
     try:
@@ -35,13 +38,14 @@ def send_query(command):
                 else:
                     print("%{T5}󰐎%{T1} ")
             elif command == "songName":
-                print(data + " ")
+                print(data[:15] + " ")
             elif command == "progress":
                 print(data)
             s.close()
 
-    except Exception as e:
+    except Exception:
         exit(1)
+
 
 if len(sys.argv) < 2:
     exit(1)
