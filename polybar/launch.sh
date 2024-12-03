@@ -17,6 +17,14 @@ for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
         MONITOR=$m polybar --reload top0 &
         MONITOR=$m polybar --reload bottom0 &
     fi
+    MONITOR=$m polybar --reload terminal &
+    MONITOR=$m polybar --reload browser &
+    MONITOR=$m polybar --reload email &
+    MONITOR=$m polybar --reload ksnip &
+    MONITOR=$m polybar --reload repos &
+    MONITOR=$m polybar --reload downloads &
+    MONITOR=$m polybar --reload settings &
+    MONITOR=$m polybar --reload bashrc &
 done
 
 echo "Bars launched..."

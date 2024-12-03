@@ -220,6 +220,7 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 gaps inner 12px
 gaps top 12px
 gaps bottom 18px
+gaps left 30px
 
 # Borders
 new_window normal 0 px
