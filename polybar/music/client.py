@@ -2,6 +2,7 @@
 
 import socket
 import sys
+import urllib.parse
 
 HOST = "127.0.0.1"  # The server's hostname or IP address
 PORT = 49153  # The port used by the server
@@ -25,6 +26,7 @@ def send_query(command):
             s.connect((HOST, PORT))
             s.sendall(command.encode())
             data = s.recv(1024).decode().strip()
+            data = urllib.parse.unquote(data)
             if not data:
                 exit(1)
             if command == "isStopped":
@@ -38,7 +40,7 @@ def send_query(command):
                 else:
                     print("%{T5}󰐎%{T1} ")
             elif command == "songName":
-                print(data[:15] + " ")
+                print("%{F#763A9C}" + data[:15] + " ")
             elif command == "progress":
                 print(data)
             s.close()
