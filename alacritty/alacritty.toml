@@ -43,7 +43,7 @@ white = "0xd4be98"
 yellow = "0xffa500"
 
 [colors.primary]
-background = "0x000000"
+background = "0x00151a"
 foreground = "0xc3e600" 
 
 [cursor]
@@ -63,4 +63,4 @@ key = "Return"
 mods = "Control|Shift"
 
 [window]
-opacity = 0.6
+opacity = 0.5
