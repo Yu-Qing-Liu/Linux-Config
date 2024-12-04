@@ -57,6 +57,7 @@ for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
     MONITOR=$m polybar --reload sed &
     MONITOR=$m polybar --reload commit &
     MONITOR=$m polybar --reload zip &
+    MONITOR=$m polybar --reload xkill &
 done
 
 echo "Bars launched..."
