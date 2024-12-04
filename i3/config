@@ -217,10 +217,9 @@ exec_always feh --bg-fill /home/admin/Pictures/Background.jpg
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Gaps
-gaps inner 12px
-gaps top 12px
-gaps bottom 18px
-gaps left 30px
+gaps inner 6px
+gaps top 16px
+gaps left 34px
 
 # Borders
 new_window normal 0 px

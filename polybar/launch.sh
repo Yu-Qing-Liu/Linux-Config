@@ -12,10 +12,10 @@ for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
         MONITOR=$m polybar --reload top1 &
         MONITOR=$m polybar --reload top2 &
         MONITOR=$m polybar --reload top3 &
-        MONITOR=$m polybar --reload bottom1 &
+        MONITOR=$m polybar --reload top4 &
+        MONITOR=$m polybar --reload top5 &
     else
         MONITOR=$m polybar --reload top0 &
-        MONITOR=$m polybar --reload bottom0 &
     fi
     MONITOR=$m polybar --reload terminal &
     MONITOR=$m polybar --reload browser &
