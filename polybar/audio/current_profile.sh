@@ -2,7 +2,6 @@
 
 # Set the card index (change this if the card index is different)
 card_index=0
-deadlocked=false
 
 speakers_profile="HiFi (HDMI1, HDMI2, HDMI3, Mic1, Mic2, Speaker)"
 headphones_profile="HiFi (HDMI1, HDMI2, HDMI3, Headphones, Mic1, Mic2)"
@@ -14,7 +13,7 @@ current_profile=$(pactl list cards | awk -v card_index="$card_index" '
 ' | xargs)
 
 if [[ "$current_profile" == "$headphones_profile" ]]; then
-    echo "%{F#399A9C}  %{T4}󰋋%{T8} %{T4}󰓡%{T8} %{T4}󰕾%{T-}%{F-}"
+    echo "  %{T4}󰋋%{T8} %{T4}󰓡%{T8} %{T4}󰕾%{T-}"
 else
-    echo "%{F#399A9C}  %{T4}󰕾%{T8} %{T4}󰓡%{T8} %{T4}󰋋%{T-}%{F-}"
+    echo "  %{T4}󰕾%{T8} %{T4}󰓡%{T8} %{T4}󰋋%{T-}"
 fi
