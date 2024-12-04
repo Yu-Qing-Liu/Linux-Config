@@ -25,6 +25,10 @@ for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
     MONITOR=$m polybar --reload downloads &
     MONITOR=$m polybar --reload settings &
     MONITOR=$m polybar --reload bashrc &
+    MONITOR=$m polybar --reload grep &
+    MONITOR=$m polybar --reload sed &
+    MONITOR=$m polybar --reload commit &
+    MONITOR=$m polybar --reload zip &
 done
 
 echo "Bars launched..."
