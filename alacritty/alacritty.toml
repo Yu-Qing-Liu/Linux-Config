@@ -63,4 +63,4 @@ key = "Return"
 mods = "Control|Shift"
 
 [window]
-opacity = 0.75
+opacity = 0.3
