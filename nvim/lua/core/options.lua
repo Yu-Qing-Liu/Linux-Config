@@ -14,8 +14,6 @@ opt.shiftwidth = 4
 opt.expandtab = true
 opt.autoindent = true
 vim.bo.softtabstop = 4
-
--- Define autocmds to set options for specific filetypes
 vim.cmd([[
   augroup FiletypeSettings
     autocmd!
@@ -23,15 +21,19 @@ vim.cmd([[
   augroup END
 ]])
 
+-- Cursor
+opt.guicursor = "a:blinkon1"
+opt.guicursor = "a:blinkon1,i:ver25"
+
+-- Cursor Line
+opt.cursorline = true
+
 -- Line Wrapping
 opt.wrap = false
 
 -- Search Settings
 opt.ignorecase = true
 opt.smartcase = true
-
--- Cursor Line
-opt.cursorline = true
 
 -- Appearance
 opt.termguicolors = true
