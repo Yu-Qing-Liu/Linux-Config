@@ -23,10 +23,6 @@ keymap.set("n", "<leader>sk", "<C-w>+") -- make split windows height taller
 keymap.set("n", "<leader>sl", "<C-w>>5") -- make split windows width bigger 
 keymap.set("n", "<leader>sh", "<C-w><5") -- make split windows width smaller
 
--- Tab management
-keymap.set("n", "<leader>to", ":Tabby jump_to_tab<CR>") -- open a new tab
-keymap.set("n", "<leader>tc", ":tabclose<CR>") -- close a tab
-
 -- Diff keymaps
 keymap.set("n", "<leader>cc", ":diffput<CR>") -- put diff from current to other during diff
 keymap.set("n", "<leader>cj", ":diffget 1<CR>") -- get diff from left (local) during merge
@@ -51,9 +47,9 @@ keymap.set("n", "<leader>er", ":NvimTreeFocus<CR>") -- toggle focus to file expl
 keymap.set("n", "<leader>ef", ":NvimTreeFindFile<CR>") -- find file in file explorer
 
 -- Telescope
-keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, {})
+keymap.set('n', '<leader>fb', require('telescope.builtin').find_files, {})
 keymap.set('n', '<leader>fg', require('telescope.builtin').live_grep, {})
-keymap.set('n', '<leader>fb', require('telescope.builtin').buffers, {})
+keymap.set('n', '<leader>ff', require('telescope.builtin').buffers, {})
 keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, {})
 keymap.set('n', '<leader>fs', require('telescope.builtin').current_buffer_fuzzy_find, {})
 keymap.set('n', '<leader>fo', require('telescope.builtin').lsp_document_symbols, {})
@@ -141,4 +137,3 @@ keymap.set("n", '<leader>d?', function() local widgets = require "dap.ui.widgets
 keymap.set("n", '<leader>df', '<cmd>Telescope dap frames<cr>')
 keymap.set("n", '<leader>dh', '<cmd>Telescope dap commands<cr>')
 keymap.set("n", '<leader>de', function() require('telescope.builtin').diagnostics({default_text=":E:"}) end)
-
