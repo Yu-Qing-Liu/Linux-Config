@@ -18,6 +18,9 @@ set $mod Mod1
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
 
+# Grant docker permission to the X server
+exec --no-startup-id xhost +local:docker
+
 # Monitors
 exec_always --no-startup-id bash -c '$HOME/.config/i3/monitors.sh'
 
