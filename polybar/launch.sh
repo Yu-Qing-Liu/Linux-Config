@@ -50,14 +50,19 @@ for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
     MONITOR=$m polybar --reload email &
     MONITOR=$m polybar --reload ksnip &
     MONITOR=$m polybar --reload repos &
+    MONITOR=$m polybar --reload documents &
     MONITOR=$m polybar --reload downloads &
     MONITOR=$m polybar --reload settings &
     MONITOR=$m polybar --reload bashrc &
+    MONITOR=$m polybar --reload wezterm &
+    MONITOR=$m polybar --reload polybar-config &
+    MONITOR=$m polybar --reload i3-config &
     MONITOR=$m polybar --reload grep &
     MONITOR=$m polybar --reload sed &
     MONITOR=$m polybar --reload commit &
     MONITOR=$m polybar --reload zip &
     MONITOR=$m polybar --reload xkill &
+    MONITOR=$m polybar --reload docker-clean &
 done
 
 echo "Bars launched..."
