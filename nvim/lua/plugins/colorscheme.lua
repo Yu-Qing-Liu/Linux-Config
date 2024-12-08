@@ -1,5 +1,4 @@
 -- Theme/Colorscheme (uncomment section for whichever theme you prefer or use your own)
--- Gruvbox
 return {
   -- https://github.com/rebelot/kanagawa.nvim
   'rebelot/kanagawa.nvim', -- You can replace this with your favorite colorscheme
