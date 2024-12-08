@@ -1,35 +1,35 @@
 colors:
-  bg:         "1d2021"
-  bg0:        "1d2021"
-  bg1:        "3c3836"
-  bg2:        "504945"
-  bg3:        "665c54"
-  bg4:        "7c6f64"
+  bg:         "002633"
+  bg0:        "002633"
+  bg1:        "1e2c35"
+  bg2:        "1c2c36"
+  bg3:        "444444"
+  bg4:        "444444"
 
-  fg:         "ebdbb2"
-  fg0:        "fbf1c7"
-  fg1:        "ebdbb2"
-  fg2:        "d5c4a1"
-  fg3:        "bdae93"
-  fg4:        "a89984"
+  fg:         "076678"
+  fg0:        "458588"
+  fg1:        "83a598"
+  fg2:        "427b58"
+  fg3:        "689d6a"
+  fg4:        "8ec07c"
 
-  red:        "cc241d"
-  green:      "98971a"
-  yellow:     "d79921"
-  blue:       "458588"
-  purple:     "b16286"
-  aqua:       "689d6a"
-  orange:     "ffa500"
-  gray:       "a89984"
+  red:        "DCD7BA"
+  green:      "C34043"
+  yellow:     "76946A"
+  blue:       "C0A36E"
+  purple:     "7E9CD8"
+  aqua:       "957FB8"
+  orange:     "6A9589"
+  gray:       "C8C093"
 
-  alt_red:    "fb4934"
-  alt_green:  "b8bb26"
-  alt_yellow: "fabd2f"
-  alt_blue:   "83a598"
-  alt_purple: "d3869b"
-  alt_aqua:   "8ec07c"
-  alt_orange: "fe8019"
-  alt_gray:   "928374"
+  alt_red:    "727169"
+  alt_green:  "E82424"
+  alt_yellow: "98BB6C"
+  alt_blue:   "E6C384"
+  alt_purple: "7FB4CA"
+  alt_aqua:   "938AA9"
+  alt_orange: "7AA89F"
+  alt_gray:   "FFA500"
 
 core:
   normal_text:
@@ -41,7 +41,7 @@ core:
   reset_to_normal: {}
 
   directory:
-    foreground: orange
+    foreground: alt_gray
     font-style: bold
 
   symlink:
