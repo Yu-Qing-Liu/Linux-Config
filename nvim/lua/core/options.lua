@@ -21,10 +21,6 @@ vim.cmd([[
   augroup END
 ]])
 
--- Cursor
-opt.guicursor = "a:blinkon1"
-opt.guicursor = "a:blinkon1,i:ver25"
-
 -- Cursor Line
 opt.cursorline = true
 

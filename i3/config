@@ -236,6 +236,7 @@ client.placeholder        #000000$transparency2    #000000$transparency2    #fff
 client.background       #ffffff00
 
 for_window [class="ksnip"] floating enable, move position center
+for_window [class="iwgtk"] floating enable, move position center
 for_window [class="Blueberry.py"] floating enable, move position center
 
 for_window [all] title_window_icon on
