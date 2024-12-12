@@ -227,7 +227,7 @@ set $transparency1 FF
 set $transparency2 CD
 
 # class                   border                   backgr.                  text       indicator                child_border
-client.focused            #763a9c$transparency2    #763a9c$transparency2    #ffffff    #000000$transparency1    #000000$transparency1
+client.focused            #FFA500$transparency2    #FFA500$transparency2    #000000    #000000$transparency1    #000000$transparency1
 client.focused_inactive   #000000$transparency2    #000000$transparency2    #ffffff    #000000$transparency1    #000000$transparency1
 client.unfocused          #000000$transparency2    #000000$transparency2    #ffffff    #000000$transparency1    #000000$transparency1
 client.urgent             #2f343a$transparency2    #900000$transparency2    #ffffff    #900000$transparency1    #900000$transparency1

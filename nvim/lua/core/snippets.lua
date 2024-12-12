@@ -6,7 +6,7 @@ ls.add_snippets("tex", {
 %--------------------------
 \begin{tikzpicture}
 \node [mybox] (box){%
-\begin{minipage}{0.45\textwidth}
+\begin{minipage}{0.3\textwidth}
 \end{minipage}
 };
 \node[fancytitle, right=10pt] at (box.north west) {};
