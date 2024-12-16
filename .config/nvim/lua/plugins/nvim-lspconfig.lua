@@ -27,22 +27,7 @@ return {
     require('mason').setup()
     require('mason-lspconfig').setup({
       -- Install these LSPs automatically
-      ensure_installed = {
-        'bashls',
-        'cssls',
-        'html',
-        'gradle_ls',
-        'groovyls',
-        'lua_ls',
-        'jdtls',
-        'jsonls',
-        'lemminx',
-        'marksman',
-        'quick_lint_js',
-        'yamlls',
-        'kotlin_language_server',
-        'pylsp'
-      }
+      ensure_installed = {}
     })
 
     require('mason-tool-installer').setup({
