@@ -1,0 +1,14 @@
+/*
+
+# track this file
+!.gitignore
+
+# whitelist
+!.gitconfig
+!.wezterm.lua
+!.xinitrc
+!.bashrc
+
+!.config/
+
+!Pictures/

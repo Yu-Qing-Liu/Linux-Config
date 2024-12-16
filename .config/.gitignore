@@ -1,0 +1,14 @@
+/*
+
+# track this file
+!.gitignore
+
+# whitelist
+!i3/
+!rofi/
+!ranger/
+!picom/
+!nvim/
+!polybar/
+!systemd/
+!vivid/
