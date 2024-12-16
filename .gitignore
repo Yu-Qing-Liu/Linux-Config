@@ -7,8 +7,10 @@
 !.gitconfig
 !.wezterm.lua
 !.xinitrc
+!.Xresources
 !.bashrc
 
 !.config/
 
 !Pictures/
+!Scripts/

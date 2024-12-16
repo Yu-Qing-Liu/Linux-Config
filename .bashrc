@@ -14,6 +14,14 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias vim='nvim'
 alias ranger='. ranger'
+alias pacman='pacman.sh'
+
+# Paths
+for dir in "$HOME/Scripts"/*/; do
+    if [ -d "$dir" ]; then
+        export PATH="$dir:$PATH"
+    fi
+done
 
 # Environment variables
 export SYSTEM_EDITOR=nvim
