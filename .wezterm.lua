@@ -4,17 +4,11 @@ local wezterm = require 'wezterm'
 -- This will hold the configuration.
 local config = wezterm.config_builder()
 
--- This is where you actually apply your config choices
-config.set_environment_variables = {
-  TERMINFO_DIRS = '/usr/share/terminfo'
-}
-
-config.term = 'wezterm'
-
 config.tiling_desktop_environments = {
   'X11 i3'
 }
 
+config.enable_wayland = false
 config.enable_tab_bar = false
 config.font_size = 20.0
 config.font = wezterm.font ({
