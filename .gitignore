@@ -5,7 +5,6 @@
 
 # whitelist
 !.gitconfig
-!.wezterm.lua
 !.xinitrc
 !.Xresources
 !.bashrc

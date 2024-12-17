@@ -13,7 +13,7 @@ current_profile=$(pactl list cards | awk -v card_index="$card_index" '
 ' | xargs)
 
 if [[ "$current_profile" == "$headphones_profile" ]]; then
-    echo "  %{T4}󰋋%{T8} %{T4}󰓡%{T8} %{T4}󰕾%{T-}"
+    echo "  %{F#000099}%{T4}󰋋%{T8} %{T4}󰓡%{T8} %{T4}󰕾%{T-}%{F-}"
 else
-    echo "  %{T4}󰕾%{T8} %{T4}󰓡%{T8} %{T4}󰋋%{T-}"
+    echo "  %{F#000099}%{T4}󰕾%{T8} %{T4}󰓡%{T8} %{T4}󰋋%{T-}%{F-}"
 fi

@@ -43,6 +43,7 @@ for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
         MONITOR=$m polybar --reload top4 &
         MONITOR=$m polybar --reload top5 &
     else
+        MONITOR=$m polybar --reload top0 &
         MONITOR=$m polybar --reload top1 &
     fi
     MONITOR=$m polybar --reload terminal &

@@ -31,6 +31,8 @@ export VISUAL=nvim
 export LS_COLORS="$(vivid generate ~/.config/vivid/themes/kanagawa.yml)"
 export TEXINPUTS="/usr/share/texmf-dist/tex/latex:$TEXINPUTS"
 
+source "$HOME/.cargo/env"
+
 PS1='[\u@\h \W]\$ '
 
 # Start a ranger instance on each launch

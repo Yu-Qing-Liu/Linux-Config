@@ -1,4 +1,4 @@
-#!/home/admin/.config/polybar/music/venv/bin/python
+#!/home/admin/.config/polybar/music/venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys

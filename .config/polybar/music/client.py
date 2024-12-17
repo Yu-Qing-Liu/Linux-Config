@@ -40,7 +40,7 @@ def send_query(command):
                 else:
                     print("%{T5}󰐎%{T1} ")
             elif command == "songName":
-                print("%{F#763A9C}" + data[:15] + " ")
+                print("%{F#FFA500}" + data[:15] + " ")
             elif command == "progress":
                 print(data)
             s.close()

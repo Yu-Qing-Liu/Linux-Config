@@ -14,3 +14,4 @@ export PS1="\u@\h:\w$ "
 if [ -f ~/.bashrc ]; then
     . ~/.bashrc
 fi
+. "$HOME/.cargo/env"

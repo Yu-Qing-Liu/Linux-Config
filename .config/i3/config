@@ -21,6 +21,9 @@ exec --no-startup-id dex --autostart --environment i3
 # Grant docker permission to the X server
 exec --no-startup-id xhost +local:docker
 
+# Increase file descriptor limits
+exec_always --no-startup-id bash -c 'ulimit -n 65536'
+
 # Monitors
 exec_always --no-startup-id bash -c '$HOME/.config/i3/monitors.sh'
 
@@ -44,11 +47,11 @@ exec_always --no-startup-id autotiling
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+# exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
+# exec --no-startup-id nm-applet
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -65,7 +68,7 @@ floating_modifier $mod
 tiling_drag modifier titlebar
 
 # start a terminal
-bindsym $mod+Return exec wezterm
+bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
