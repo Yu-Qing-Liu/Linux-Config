@@ -55,7 +55,7 @@ for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
     MONITOR=$m polybar --reload downloads &
     MONITOR=$m polybar --reload settings &
     MONITOR=$m polybar --reload bashrc &
-    MONITOR=$m polybar --reload wezterm &
+    MONITOR=$m polybar --reload alacritty &
     MONITOR=$m polybar --reload polybar-config &
     MONITOR=$m polybar --reload i3-config &
     MONITOR=$m polybar --reload grep &
