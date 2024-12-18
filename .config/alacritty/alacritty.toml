@@ -38,7 +38,7 @@ index = 17
 color = '#ff5d62'
 
 [window]
-opacity = 0.75
+opacity = 0.85
 blur = true
 
 [font]
