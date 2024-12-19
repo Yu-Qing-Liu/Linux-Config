@@ -14,7 +14,8 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias vim='nvim'
 alias ranger='. ranger'
-alias pacman='pacman.sh'
+alias catkin_mk='catkin_make -DCMAKE_EXPORT_COMPILE_COMMANDS=YES && source devel/setup.bash && ln -s build/compile_commands.json compile_commands.json'
+alias catkin_clean='catkin_make clean'
 
 # Environment variables
 export LANG=en_US.UTF-8
@@ -28,6 +29,8 @@ export LD_LIBRARY_PATH=/home/admin/Applications/TensorRT-8.2.5.1/lib:$LD_LIBRARY
 export PATH=/home/admin/.local/bin:$PATH
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:"/home/admin/Applications/acados/lib"
 export ACADOS_SOURCE_DIR="/home/admin/Applications/acados/"
+export CC=clang
+export CXX=clang++
 
 # Sources
 source /opt/ros/noetic/setup.bash

@@ -214,9 +214,6 @@ bindsym $mod+r mode "resize"
 # Picom
 exec_always --no-startup-id picom &
 
-# Compton
-exec_always --no-startup-id compton -b &
-
 # Display Wallpaper
 exec_always feh --bg-fill /home/admin/Pictures/Background.jpg
 
