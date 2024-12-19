@@ -18,6 +18,9 @@ set $mod Mod1
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
 
+# Disable mouse acceleration
+exec --no-startup-id xinput --set-prop "Logitech G502 HERO Gaming Mouse" "libinput Accel Profile Enabled" 0, 1
+
 # Grant docker permission to the X server
 exec --no-startup-id xhost +local:docker
 
@@ -233,8 +236,8 @@ set $transparency2 CD
 
 # class                   border                   backgr.                  text       indicator                child_border
 client.focused            #FFA500$transparency2    #FFA500$transparency2    #000000    #000000$transparency1    #000000$transparency1
-client.focused_inactive   #000000$transparency2    #000000$transparency2    #ffffff    #000000$transparency1    #000000$transparency1
-client.unfocused          #000000$transparency2    #000000$transparency2    #ffffff    #000000$transparency1    #000000$transparency1
+client.focused_inactive   #000000$transparency1    #000000$transparency1    #ffffff    #000000$transparency1    #000000$transparency1
+client.unfocused          #000000$transparency1    #000000$transparency1    #ffffff    #000000$transparency1    #000000$transparency1
 client.urgent             #2f343a$transparency2    #900000$transparency2    #ffffff    #900000$transparency1    #900000$transparency1
 client.placeholder        #000000$transparency2    #000000$transparency2    #ffffff    #000000$transparency1    #000000$transparency1
 

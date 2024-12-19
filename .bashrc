@@ -26,6 +26,8 @@ export TEXINPUTS="/usr/share/texmf-dist/tex/latex:$TEXINPUTS"
 export PATH=/usr/local/cuda/bin:$PATH
 export LD_LIBRARY_PATH=/home/admin/Applications/TensorRT-8.2.5.1/lib:$LD_LIBRARY_PATH
 export PATH=/home/admin/.local/bin:$PATH
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:"/home/admin/Applications/acados/lib"
+export ACADOS_SOURCE_DIR="/home/admin/Applications/acados/"
 
 # Sources
 source /opt/ros/noetic/setup.bash
