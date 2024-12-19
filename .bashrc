@@ -14,7 +14,6 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias vim='nvim'
 alias ranger='. ranger'
-alias pacman='pacman.sh'
 
 # Environment variables
 export LANG=en_US.UTF-8

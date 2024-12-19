@@ -212,7 +212,7 @@ bindsym $mod+r mode "resize"
 exec_always --no-startup-id picom &
 
 # Display Wallpaper
-exec_always feh --bg-fill /home/admin/Pictures/Background.jpg
+exec_always feh --bg-fill /home/admin/Pictures/Background*
 
 # Polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
@@ -230,10 +230,10 @@ set $transparency2 CD
 
 # class                   border                   backgr.                  text       indicator                child_border
 client.focused            #FFA500$transparency2    #FFA500$transparency2    #000000    #000000$transparency1    #000000$transparency1
-client.focused_inactive   #000000$transparency2    #000000$transparency2    #ffffff    #000000$transparency1    #000000$transparency1
-client.unfocused          #000000$transparency2    #000000$transparency2    #ffffff    #000000$transparency1    #000000$transparency1
+client.focused_inactive   #00061a$transparency2    #00061a$transparency2    #ffffff    #000000$transparency1    #000000$transparency1
+client.unfocused          #00061a$transparency2    #00061a$transparency2    #ffffff    #000000$transparency1    #000000$transparency1
 client.urgent             #2f343a$transparency2    #900000$transparency2    #ffffff    #900000$transparency1    #900000$transparency1
-client.placeholder        #000000$transparency2    #000000$transparency2    #ffffff    #000000$transparency1    #000000$transparency1
+client.placeholder        #00061a$transparency2    #00061a$transparency2    #ffffff    #000000$transparency1    #000000$transparency1
 
 client.background       #ffffff00
 
