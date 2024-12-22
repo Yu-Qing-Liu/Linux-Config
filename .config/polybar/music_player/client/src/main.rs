@@ -3,7 +3,7 @@ use std::io::{BufRead, BufReader, Write};
 use std::net::{Ipv4Addr, Shutdown, SocketAddrV4, TcpStream};
 
 const ADDR: Ipv4Addr = Ipv4Addr::new(127, 0, 0, 1);
-const PORT: u16 = 8001;
+const PORT: u16 = 8003;
 
 fn main() -> std::io::Result<()> {
     let args: Vec<String> = env::args().collect();

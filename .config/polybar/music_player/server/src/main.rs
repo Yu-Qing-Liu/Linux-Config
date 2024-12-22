@@ -1,9 +1,9 @@
 use futures::stream::AbortHandle;
-use std::cmp::max;
 use futures::stream::Abortable;
 use rand::seq::SliceRandom;
 use rand::thread_rng;
-use rodio::{Decoder, Source, OutputStream, Sink};
+use rodio::{Decoder, OutputStream, Source, Sink};
+use std::cmp::max;
 use std::fs::File;
 use std::io::BufReader;
 use std::net::{Ipv4Addr, SocketAddrV4};
@@ -17,7 +17,7 @@ use tokio::task;
 use walkdir::WalkDir;
 
 const ADDR: Ipv4Addr = Ipv4Addr::new(127, 0, 0, 1);
-const PORT: u16 = 8001;
+const PORT: u16 = 8003;
 
 fn get_music_files() -> Vec<PathBuf> {
     let home_dir = dirs::home_dir().unwrap();
@@ -42,27 +42,28 @@ fn get_music_files() -> Vec<PathBuf> {
 }
 
 async fn play(
-    delay: Duration,
     index_lock: Arc<Mutex<usize>>,
     music_files_lock: Arc<Mutex<Vec<PathBuf>>>,
     sink_lock: Arc<Mutex<Sink>>,
 ) {
-    tokio::time::sleep(delay).await;
-    let music_files = music_files_lock.lock().await; // Lock the music files
+    let mut music_files = music_files_lock.lock().await;
     let mut index = index_lock.lock().await;
-    if !music_files.is_empty() && *index < music_files.len() {
+    while !music_files.is_empty() && *index < music_files.len() {
         let sink = sink_lock.lock().await;
         let file = BufReader::new(File::open(&music_files[*index]).unwrap());
-        drop(music_files);
         let source = Decoder::new(file).unwrap();
         let duration = source.total_duration().unwrap_or(Duration::new(0, 0));
         sink.stop();
         sink.append(source);
         drop(sink);
-        *index += 1;
         drop(index);
-        Box::pin(play(duration, index_lock, music_files_lock, sink_lock)).await;
-    } else {
+        drop(music_files);
+        tokio::time::sleep(duration).await;
+        index = index_lock.lock().await;
+        music_files = music_files_lock.lock().await;
+        *index += 1;
+    }
+    if music_files.is_empty() || *index >= music_files.len() {
         println!("No music files available to play.");
     }
 }
@@ -155,7 +156,6 @@ async fn handle_client(
                     let (abort_handle, abort_registration) = AbortHandle::new_pair();
                     let play_future = Abortable::new(
                         play(
-                            Duration::from_secs(0),
                             current_index_lock_clone,
                             music_files_lock_clone,
                             sink_lock_clone,
@@ -189,7 +189,8 @@ async fn handle_client(
             }
             "next" => {
                 // Next command
-                let current_index = current_index_lock.lock().await;
+                let mut current_index = current_index_lock.lock().await;
+                *current_index += 1;
                 let music_files = music_files_lock.lock().await;
                 if *current_index < music_files.len() {
                     // Cancel any running play task if exists
@@ -204,7 +205,6 @@ async fn handle_client(
                     let (abort_handle, abort_registration) = AbortHandle::new_pair();
                     let play_future = Abortable::new(
                         play(
-                            Duration::from_secs(0),
                             current_index_lock_clone,
                             music_files_lock_clone,
                             sink_lock_clone,
@@ -224,11 +224,7 @@ async fn handle_client(
             "prev" => {
                 // Prev command
                 let mut current_index = current_index_lock.lock().await;
-                if *current_index <= 1 {
-                    *current_index = 0;
-                } else {
-                    *current_index -= 2;
-                }
+                *current_index = max(*current_index, 1) - 1;
                 let mut current_task = current_task_lock.lock().await;
                 if let Some(handle) = current_task.take() {
                     handle.abort(); // Abort the previous task if any
@@ -240,7 +236,6 @@ async fn handle_client(
                 let (abort_handle, abort_registration) = AbortHandle::new_pair();
                 let play_future = Abortable::new(
                     play(
-                        Duration::from_secs(0),
                         current_index_lock_clone,
                         music_files_lock_clone,
                         sink_lock_clone,
