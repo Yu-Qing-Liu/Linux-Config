@@ -3,7 +3,7 @@ use std::cmp::max;
 use futures::stream::Abortable;
 use rand::seq::SliceRandom;
 use rand::thread_rng;
-use rodio::{Decoder, OutputStream, Sink};
+use rodio::{Decoder, Source, OutputStream, Sink};
 use std::fs::File;
 use std::io::BufReader;
 use std::net::{Ipv4Addr, SocketAddrV4};
@@ -53,10 +53,9 @@ async fn play(
     if !music_files.is_empty() && *index < music_files.len() {
         let sink = sink_lock.lock().await;
         let file = BufReader::new(File::open(&music_files[*index]).unwrap());
-        let duration = mp3_duration::from_path(&music_files[*index])
-            .unwrap_or_else(|_| Duration::from_secs(0));
         drop(music_files);
         let source = Decoder::new(file).unwrap();
+        let duration = source.total_duration().unwrap_or(Duration::new(0, 0));
         sink.stop();
         sink.append(source);
         drop(sink);
@@ -90,24 +89,16 @@ async fn handle_progress(
 ) -> String {
     let music_files = music_files_lock.lock().await;
     let current_index = current_index_lock.lock().await;
-
-    // Get the total duration of the current song
-    let duration = mp3_duration::from_path(&music_files[*current_index])
-        .unwrap_or_else(|_| Duration::from_secs(0));
-
-    // Get the current position of the song being played from the Sink
     let sink = sink_lock.lock().await;
-    let current_time = sink.get_pos(); // This returns the current position as Duration
-
+    let current_time = sink.get_pos();
+    let file = BufReader::new(File::open(&music_files[*current_index]).unwrap());
+    let source = Decoder::new(file).unwrap();
+    let duration = source.total_duration().unwrap_or(Duration::new(0, 0));
     if duration > Duration::from_secs(0) {
-        // Calculate the progress as a fraction of the total duration
         let progress = current_time.as_secs_f64() / duration.as_secs_f64();
-
-        let bar_length = 25; // Length of the progress bar
-        let filled_length = (bar_length as f64 * progress).round() as usize; // Number of filled blocks
+        let bar_length = 25;
+        let filled_length = (bar_length as f64 * progress).round() as usize;
         let empty_length = bar_length - filled_length;
-
-        // Construct the progress bar
         let bar = format!(
             "%{{F#FFFFFF}}{}%{{F#4DFFFFFF}}{}{}",
             "━".repeat(filled_length),
@@ -116,7 +107,6 @@ async fn handle_progress(
         );
         return bar;
     } else {
-        // If no song is playing or duration is 0, return a full empty progress bar
         return "%{F#4DFFFFFF}━━━━━━━━━━━━━━━━━━━━━━━━━\n".to_string();
     }
 }
