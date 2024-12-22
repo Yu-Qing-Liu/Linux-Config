@@ -91,11 +91,10 @@ async fn handle_progress(
     let current_index = current_index_lock.lock().await;
     let sink = sink_lock.lock().await;
     let current_time = sink.get_pos();
-    let file = BufReader::new(File::open(&music_files[*current_index]).unwrap());
-    let source = Decoder::new(file).unwrap();
-    let duration = source.total_duration().unwrap_or(Duration::new(0, 0));
+    let file = File::open(&music_files[*current_index]).unwrap();
+    let duration = mp3_duration::from_file(&file).unwrap_or(Duration::from_secs(0));
     if duration > Duration::from_secs(0) {
-        let progress = current_time.as_secs_f64() / duration.as_secs_f64();
+        let progress = f64::min(1.0, current_time.as_secs_f64() / duration.as_secs_f64());
         let bar_length = 25;
         let filled_length = (bar_length as f64 * progress).round() as usize;
         let empty_length = bar_length - filled_length;
