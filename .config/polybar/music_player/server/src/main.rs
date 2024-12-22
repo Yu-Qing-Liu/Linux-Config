@@ -108,67 +108,17 @@ async fn handle_client(
         let mut paused = paused_lock.lock().await;
         match command.as_str() {
             "start" => {
-            // Start command
-            *stopped = false;
-            *paused = false;
-            let mut current_index = current_index_lock.lock().await;
-            *current_index = 0;
-            // Cancel any running play task if exists
-            let mut current_task = current_task_lock.lock().await;
-            if let Some(handle) = current_task.take() {
-                handle.abort(); // Abort the previous task if any
-            }
-            // Play the first song
-            let music_files_lock_clone = Arc::clone(&music_files_lock);
-            let sink_lock_clone = Arc::clone(&sink_lock);
-            let current_index_lock_clone = Arc::clone(&current_index_lock);
-            let (abort_handle, abort_registration) = AbortHandle::new_pair();
-            let play_future = Abortable::new(
-                play(
-                    Duration::from_secs(0),
-                    current_index_lock_clone,
-                    music_files_lock_clone,
-                    sink_lock_clone,
-                ),
-                abort_registration,
-            );
-            *current_task = Some(abort_handle);
-            tokio::spawn(async move {
-                let _ = play_future.await;
-            });
-        }
-        "stop" => {
-            // Stop command
-            *stopped = true;
-            // Reshuffle
-            let mut music_files = music_files_lock.lock().await;
-            *music_files = get_music_files();
-            // Stop the playlist
-            stop(&sink_lock).await;
-        }
-        "pause" => {
-            println!("Pausing");
-            // Pause command
-            if *paused {
-                // Continue song
+                // Start command
+                *stopped = false;
                 *paused = false;
-                resume(&sink_lock).await;
-            } else {
-                *paused = true;
-                pause(&sink_lock).await;
-            }
-        }
-        "next" => {
-            // Next command
-            let current_index = current_index_lock.lock().await;
-            let music_files = music_files_lock.lock().await;
-            if *current_index < music_files.len() {
+                let mut current_index = current_index_lock.lock().await;
+                *current_index = 0;
                 // Cancel any running play task if exists
                 let mut current_task = current_task_lock.lock().await;
                 if let Some(handle) = current_task.take() {
                     handle.abort(); // Abort the previous task if any
                 }
-                // Play the next song
+                // Play the first song
                 let music_files_lock_clone = Arc::clone(&music_files_lock);
                 let sink_lock_clone = Arc::clone(&sink_lock);
                 let current_index_lock_clone = Arc::clone(&current_index_lock);
@@ -186,61 +136,111 @@ async fn handle_client(
                 tokio::spawn(async move {
                     let _ = play_future.await;
                 });
-            } else {
+            }
+            "stop" => {
+                // Stop command
                 *stopped = true;
+                // Reshuffle
+                let mut music_files = music_files_lock.lock().await;
+                *music_files = get_music_files();
                 // Stop the playlist
                 stop(&sink_lock).await;
             }
-        }
-        "prev" => {
-            // Prev command
-            let mut current_index = current_index_lock.lock().await;
-            if *current_index == 1 {
-                *current_index = 0;
-            } else {
-                *current_index -= 2;
+            "pause" => {
+                println!("Pausing");
+                // Pause command
+                if *paused {
+                    // Continue song
+                    *paused = false;
+                    resume(&sink_lock).await;
+                } else {
+                    *paused = true;
+                    pause(&sink_lock).await;
+                }
             }
-            let mut current_task = current_task_lock.lock().await;
-            if let Some(handle) = current_task.take() {
-                handle.abort(); // Abort the previous task if any
+            "next" => {
+                // Next command
+                let current_index = current_index_lock.lock().await;
+                let music_files = music_files_lock.lock().await;
+                if *current_index < music_files.len() {
+                    // Cancel any running play task if exists
+                    let mut current_task = current_task_lock.lock().await;
+                    if let Some(handle) = current_task.take() {
+                        handle.abort(); // Abort the previous task if any
+                    }
+                    // Play the next song
+                    let music_files_lock_clone = Arc::clone(&music_files_lock);
+                    let sink_lock_clone = Arc::clone(&sink_lock);
+                    let current_index_lock_clone = Arc::clone(&current_index_lock);
+                    let (abort_handle, abort_registration) = AbortHandle::new_pair();
+                    let play_future = Abortable::new(
+                        play(
+                            Duration::from_secs(0),
+                            current_index_lock_clone,
+                            music_files_lock_clone,
+                            sink_lock_clone,
+                        ),
+                        abort_registration,
+                    );
+                    *current_task = Some(abort_handle);
+                    tokio::spawn(async move {
+                        let _ = play_future.await;
+                    });
+                } else {
+                    *stopped = true;
+                    // Stop the playlist
+                    stop(&sink_lock).await;
+                }
             }
-            // Play the previous song
-            let music_files_lock_clone = Arc::clone(&music_files_lock);
-            let sink_lock_clone = Arc::clone(&sink_lock);
-            let current_index_lock_clone = Arc::clone(&current_index_lock);
-            let (abort_handle, abort_registration) = AbortHandle::new_pair();
-            let play_future = Abortable::new(
-                play(
-                    Duration::from_secs(0),
-                    current_index_lock_clone,
-                    music_files_lock_clone,
-                    sink_lock_clone,
-                ),
-                abort_registration,
-            );
-            *current_task = Some(abort_handle);
-            tokio::spawn(async move {
-                let _ = play_future.await;
-            });
+            "prev" => {
+                // Prev command
+                let mut current_index = current_index_lock.lock().await;
+                if *current_index == 1 {
+                    *current_index = 0;
+                } else {
+                    *current_index -= 2;
+                }
+                let mut current_task = current_task_lock.lock().await;
+                if let Some(handle) = current_task.take() {
+                    handle.abort(); // Abort the previous task if any
+                }
+                // Play the previous song
+                let music_files_lock_clone = Arc::clone(&music_files_lock);
+                let sink_lock_clone = Arc::clone(&sink_lock);
+                let current_index_lock_clone = Arc::clone(&current_index_lock);
+                let (abort_handle, abort_registration) = AbortHandle::new_pair();
+                let play_future = Abortable::new(
+                    play(
+                        Duration::from_secs(0),
+                        current_index_lock_clone,
+                        music_files_lock_clone,
+                        sink_lock_clone,
+                    ),
+                    abort_registration,
+                );
+                *current_task = Some(abort_handle);
+                tokio::spawn(async move {
+                    let _ = play_future.await;
+                });
+            }
+            "stopped" => {
+                // Return stop status
+                let message = if *stopped { "true\n" } else { "false\n" };
+                let _ = stream.write_all(&message.as_bytes()).await;
+            }
+            "paused" => {
+                // Return pause status
+                let message = if *paused { "true\n" } else { "false\n" };
+                let _ = stream.write_all(&message.as_bytes()).await;
+            }
+            "song" => {
+                // Return the current song's name
+            }
+            "progress" => {
+                // Return the song's progress bar
+            }
+            _ => {}
         }
-        "stopped" => {
-            // Return stop status
-            let message = if *stopped { "true" } else { "false" };
-            let _ = stream.write(&message.as_bytes());
-        }
-        "paused" => {
-            // Return pause status
-            let message = if *paused { "true" } else { "false" };
-            let _ = stream.write(&message.as_bytes());
-        }
-        "song" => {
-            // Return the current song's name
-        }
-        "progress" => {
-            // Return the song's progress bar
-        }
-        _ => {}
-    }
     }
 }
 
