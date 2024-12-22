@@ -39,8 +39,8 @@ if [[ -n "$TARGET_MONITOR2" ]]; then
     xrandr --output "$TARGET_MONITOR2" --right-of "$TARGET_MONITOR3"
 fi
 
-xrandr --output "$TARGET_MONITOR1" --rotate "right" --right-of "$TARGET_MONITOR2"
 xrandr --output "$TARGET_MONITOR1" --rotate "left" --right-of "$TARGET_MONITOR2"
+sleep 3
 
-# Set background image
-feh --bg-fill /home/admin/Pictures/Background.jpg
+# Display Wallpaper
+feh --bg-fill /home/admin/Pictures/Background*

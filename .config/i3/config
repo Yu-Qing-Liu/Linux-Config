@@ -28,7 +28,7 @@ exec_always --no-startup-id bash -c 'ulimit -n 65536'
 exec_always --no-startup-id bash -c '$HOME/.config/i3/monitors.sh'
 
 # Music server
-exec_always --no-startup-id bash -c '$HOME/.config/polybar/music/server.sh &'
+exec_always bash -c '$HOME/.config/polybar/music/server.sh &'
 
 # Disable screenlock
 exec_always --no-startup-id xset s off
@@ -210,9 +210,6 @@ bindsym $mod+r mode "resize"
 
 # Picom
 exec_always --no-startup-id picom &
-
-# Display Wallpaper
-exec_always feh --bg-fill /home/admin/Pictures/Background*
 
 # Polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
