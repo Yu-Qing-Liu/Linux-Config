@@ -28,7 +28,7 @@ exec_always --no-startup-id bash -c 'ulimit -n 65536'
 exec_always --no-startup-id bash -c '$HOME/.config/i3/monitors.sh'
 
 # Music server
-exec_always bash -c '$HOME/.config/polybar/music/server.sh &'
+exec_always bash -c '$HOME/.config/polybar/music_player/server/target/debug/server'
 
 # Disable screenlock
 exec_always --no-startup-id xset s off
