@@ -1,5 +1,5 @@
 use std::env;
-use std::io::{BufRead, BufReader, BufWriter, Write};
+use std::io::{BufRead, BufReader, Write};
 use std::net::{Ipv4Addr, Shutdown, SocketAddrV4, TcpStream};
 
 const ADDR: Ipv4Addr = Ipv4Addr::new(127, 0, 0, 1);
@@ -23,8 +23,24 @@ fn main() -> std::io::Result<()> {
             stream.shutdown(Shutdown::Both)?;
             return Ok(());
         }
-        "stopped" | "paused" | "song" | "progress" => {
+        "stopped" | "paused" | "song"  => {
             // Send command to server and wait for a response
+            stream.write_all(command.as_bytes())?;
+            stream.flush()?;
+            let mut reader = BufReader::new(&stream);
+            let incoming = {
+                let mut it = vec![];
+                let _ = reader.read_until(b'\n', &mut it);
+                it
+            };
+            let display_msg = String::from_utf8_lossy(&incoming);
+            let display_msg = display_msg.trim();
+            let display_msg = &display_msg.chars().take(26).collect::<String>();
+            println!("{} ", display_msg);
+            stream.shutdown(Shutdown::Both)?;
+            return Ok(());
+        }
+        "progress" => {
             stream.write_all(command.as_bytes())?;
             stream.flush()?;
             let mut reader = BufReader::new(&stream);

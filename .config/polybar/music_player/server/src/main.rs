@@ -1,4 +1,5 @@
 use futures::stream::AbortHandle;
+use std::cmp::max;
 use futures::stream::Abortable;
 use rand::seq::SliceRandom;
 use rand::thread_rng;
@@ -52,7 +53,8 @@ async fn play(
     if !music_files.is_empty() && *index < music_files.len() {
         let sink = sink_lock.lock().await;
         let file = BufReader::new(File::open(&music_files[*index]).unwrap());
-        let duration = mp3_duration::from_path(&music_files[*index]).unwrap();
+        let duration = mp3_duration::from_path(&music_files[*index])
+            .unwrap_or_else(|_| Duration::from_secs(0));
         drop(music_files);
         let source = Decoder::new(file).unwrap();
         sink.stop();
@@ -79,6 +81,44 @@ async fn pause(sink_lock: &Arc<Mutex<Sink>>) {
 async fn resume(sink_lock: &Arc<Mutex<Sink>>) {
     let sink = sink_lock.lock().await;
     sink.play();
+}
+
+async fn handle_progress(
+    sink_lock: Arc<Mutex<Sink>>,
+    music_files_lock: Arc<Mutex<Vec<std::path::PathBuf>>>,
+    current_index_lock: Arc<Mutex<usize>>,
+) -> String {
+    let music_files = music_files_lock.lock().await;
+    let current_index = current_index_lock.lock().await;
+
+    // Get the total duration of the current song
+    let duration = mp3_duration::from_path(&music_files[*current_index])
+        .unwrap_or_else(|_| Duration::from_secs(0));
+
+    // Get the current position of the song being played from the Sink
+    let sink = sink_lock.lock().await;
+    let current_time = sink.get_pos(); // This returns the current position as Duration
+
+    if duration > Duration::from_secs(0) {
+        // Calculate the progress as a fraction of the total duration
+        let progress = current_time.as_secs_f64() / duration.as_secs_f64();
+
+        let bar_length = 25; // Length of the progress bar
+        let filled_length = (bar_length as f64 * progress).round() as usize; // Number of filled blocks
+        let empty_length = bar_length - filled_length;
+
+        // Construct the progress bar
+        let bar = format!(
+            "%{{F#FFFFFF}}{}%{{F#4DFFFFFF}}{}{}",
+            "━".repeat(filled_length),
+            "━".repeat(empty_length),
+            "\n"
+        );
+        return bar;
+    } else {
+        // If no song is playing or duration is 0, return a full empty progress bar
+        return "%{F#4DFFFFFF}━━━━━━━━━━━━━━━━━━━━━━━━━\n".to_string();
+    }
 }
 
 async fn handle_client(
@@ -108,46 +148,46 @@ async fn handle_client(
         let mut paused = paused_lock.lock().await;
         match command.as_str() {
             "start" => {
-                // Start command
-                *stopped = false;
-                *paused = false;
-                let mut current_index = current_index_lock.lock().await;
-                *current_index = 0;
-                // Cancel any running play task if exists
-                let mut current_task = current_task_lock.lock().await;
-                if let Some(handle) = current_task.take() {
-                    handle.abort(); // Abort the previous task if any
+                if *stopped {
+                    // Start command
+                    *stopped = false;
+                    *paused = false;
+                    let mut current_index = current_index_lock.lock().await;
+                    *current_index = 0;
+                    // Cancel any running play task if exists
+                    let mut current_task = current_task_lock.lock().await;
+                    if let Some(handle) = current_task.take() {
+                        handle.abort(); // Abort the previous task if any
+                    }
+                    // Play the first song
+                    let music_files_lock_clone = Arc::clone(&music_files_lock);
+                    let sink_lock_clone = Arc::clone(&sink_lock);
+                    let current_index_lock_clone = Arc::clone(&current_index_lock);
+                    let (abort_handle, abort_registration) = AbortHandle::new_pair();
+                    let play_future = Abortable::new(
+                        play(
+                            Duration::from_secs(0),
+                            current_index_lock_clone,
+                            music_files_lock_clone,
+                            sink_lock_clone,
+                        ),
+                        abort_registration,
+                    );
+                    *current_task = Some(abort_handle);
+                    tokio::spawn(async move {
+                        let _ = play_future.await;
+                    });
+                } else {
+                    // Stop command
+                    *stopped = true;
+                    // Reshuffle
+                    let mut music_files = music_files_lock.lock().await;
+                    *music_files = get_music_files();
+                    // Stop the playlist
+                    stop(&sink_lock).await;
                 }
-                // Play the first song
-                let music_files_lock_clone = Arc::clone(&music_files_lock);
-                let sink_lock_clone = Arc::clone(&sink_lock);
-                let current_index_lock_clone = Arc::clone(&current_index_lock);
-                let (abort_handle, abort_registration) = AbortHandle::new_pair();
-                let play_future = Abortable::new(
-                    play(
-                        Duration::from_secs(0),
-                        current_index_lock_clone,
-                        music_files_lock_clone,
-                        sink_lock_clone,
-                    ),
-                    abort_registration,
-                );
-                *current_task = Some(abort_handle);
-                tokio::spawn(async move {
-                    let _ = play_future.await;
-                });
-            }
-            "stop" => {
-                // Stop command
-                *stopped = true;
-                // Reshuffle
-                let mut music_files = music_files_lock.lock().await;
-                *music_files = get_music_files();
-                // Stop the playlist
-                stop(&sink_lock).await;
             }
             "pause" => {
-                println!("Pausing");
                 // Pause command
                 if *paused {
                     // Continue song
@@ -195,7 +235,7 @@ async fn handle_client(
             "prev" => {
                 // Prev command
                 let mut current_index = current_index_lock.lock().await;
-                if *current_index == 1 {
+                if *current_index <= 1 {
                     *current_index = 0;
                 } else {
                     *current_index -= 2;
@@ -225,19 +265,43 @@ async fn handle_client(
             }
             "stopped" => {
                 // Return stop status
-                let message = if *stopped { "true\n" } else { "false\n" };
+                let message = if *stopped {
+                    "%{T5}%{T1}\n"
+                } else {
+                    "%{T5}%{T1}\n"
+                };
                 let _ = stream.write_all(&message.as_bytes()).await;
             }
             "paused" => {
                 // Return pause status
-                let message = if *paused { "true\n" } else { "false\n" };
+                let message = if *paused {
+                    "%{T5}󰐎%{T1}\n"
+                } else {
+                    "%{T5}%{T1}\n"
+                };
                 let _ = stream.write_all(&message.as_bytes()).await;
             }
             "song" => {
-                // Return the current song's name
+                // Return song name
+                let music_files = music_files_lock.lock().await;
+                let current_index = current_index_lock.lock().await;
+                let name = &music_files[max(*current_index, 1) - 1]
+                    .file_name()
+                    .unwrap()
+                    .to_string_lossy()
+                    .to_string();
+                let message = format!("{}{}\n", "%{F#FFA500}", name);
+                let _ = stream.write_all(&message.as_bytes()).await;
             }
             "progress" => {
                 // Return the song's progress bar
+                let progress_bar = handle_progress(
+                    sink_lock.clone(),
+                    music_files_lock.clone(),
+                    current_index_lock.clone(),
+                )
+                .await;
+                let _ = stream.write_all(progress_bar.as_bytes()).await;
             }
             _ => {}
         }
@@ -248,7 +312,7 @@ async fn handle_client(
 async fn main() {
     let music_files = Arc::new(Mutex::new(get_music_files()));
     let current_index = Arc::new(Mutex::new(0));
-    let stopped = Arc::new(Mutex::new(false));
+    let stopped = Arc::new(Mutex::new(true));
     let paused = Arc::new(Mutex::new(false));
     let current_task: Arc<Mutex<Option<AbortHandle>>> = Arc::new(Mutex::new(None));
 
