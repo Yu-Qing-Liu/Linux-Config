@@ -106,7 +106,8 @@ async fn handle_client(
         let command = String::from_utf8_lossy(&buf[..n]).to_string();
         let mut stopped = stopped_lock.lock().await;
         let mut paused = paused_lock.lock().await;
-        if command.contains("start") {
+        match command.as_str() {
+            "start" => {
             // Start command
             *stopped = false;
             *paused = false;
@@ -136,7 +137,7 @@ async fn handle_client(
                 let _ = play_future.await;
             });
         }
-        if command.contains("stop") {
+        "stop" => {
             // Stop command
             *stopped = true;
             // Reshuffle
@@ -145,7 +146,7 @@ async fn handle_client(
             // Stop the playlist
             stop(&sink_lock).await;
         }
-        if command.contains("pause") {
+        "pause" => {
             println!("Pausing");
             // Pause command
             if *paused {
@@ -157,7 +158,7 @@ async fn handle_client(
                 pause(&sink_lock).await;
             }
         }
-        if command.contains("next") {
+        "next" => {
             // Next command
             let current_index = current_index_lock.lock().await;
             let music_files = music_files_lock.lock().await;
@@ -191,7 +192,7 @@ async fn handle_client(
                 stop(&sink_lock).await;
             }
         }
-        if command.contains("prev") {
+        "prev" => {
             // Prev command
             let mut current_index = current_index_lock.lock().await;
             if *current_index == 1 {
@@ -222,22 +223,24 @@ async fn handle_client(
                 let _ = play_future.await;
             });
         }
-        if command.contains("stopped") {
+        "stopped" => {
             // Return stop status
             let message = if *stopped { "true" } else { "false" };
             let _ = stream.write(&message.as_bytes());
         }
-        if command.contains("paused") {
+        "paused" => {
             // Return pause status
             let message = if *paused { "true" } else { "false" };
             let _ = stream.write(&message.as_bytes());
         }
-        if command.contains("song") {
+        "song" => {
             // Return the current song's name
         }
-        if command.contains("progress") {
+        "progress" => {
             // Return the song's progress bar
         }
+        _ => {}
+    }
     }
 }
 
