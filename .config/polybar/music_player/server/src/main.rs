@@ -269,7 +269,7 @@ async fn handle_client(
                 // Return song name
                 let music_files = music_files_lock.lock().await;
                 let current_index = current_index_lock.lock().await;
-                let name = &music_files[max(*current_index, 1) - 1]
+                let name = &music_files[*current_index]
                     .file_name()
                     .unwrap()
                     .to_string_lossy()
