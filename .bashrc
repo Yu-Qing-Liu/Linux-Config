@@ -5,8 +5,9 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# Start window manager
 if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
-    exec startx
+    exec hyprland
 fi
 
 # Aliases
@@ -24,6 +25,3 @@ export LS_COLORS="$(vivid generate ~/.config/vivid/themes/kanagawa.yml)"
 export TEXINPUTS="/usr/share/texmf-dist/tex/latex:$TEXINPUTS"
 
 PS1='[\u@\h \W]\$ '
-
-# Start a ranger instance on each launch
-ranger

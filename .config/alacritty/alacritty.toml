@@ -43,6 +43,7 @@ blur = true
 
 [font]
 normal = { family = "NotoSansM NerdFont", style = "Regular" }
+size = 16
 
 [keyboard]
 bindings = [

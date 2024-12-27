@@ -100,14 +100,14 @@ async fn handle_progress(
         let filled_length = (bar_length as f64 * progress).round() as usize;
         let empty_length = bar_length - filled_length;
         let bar = format!(
-            "%{{F#FFFFFF}}{}%{{F#4DFFFFFF}}{}{}",
+            "{}{}{}",
             "━".repeat(filled_length),
             "━".repeat(empty_length),
             "\n"
         );
         return bar;
     } else {
-        return "%{F#4DFFFFFF}━━━━━━━━━━━━━━━━━━━━━━━━━\n".to_string();
+        return "━━━━━━━━━━━━━━━━━━━━━━━━━\n".to_string();
     }
 }
 
@@ -250,18 +250,18 @@ async fn handle_client(
             "stopped" => {
                 // Return stop status
                 let message = if *stopped {
-                    "%{T5}%{T1}\n"
+                    "\n"
                 } else {
-                    "%{T5}%{T1}\n"
+                    "\n"
                 };
                 let _ = stream.write_all(&message.as_bytes()).await;
             }
             "paused" => {
                 // Return pause status
                 let message = if *paused {
-                    "%{T5}󰐎%{T1}\n"
+                    "󰐎\n"
                 } else {
-                    "%{T5}%{T1}\n"
+                    "\n"
                 };
                 let _ = stream.write_all(&message.as_bytes()).await;
             }
@@ -274,7 +274,7 @@ async fn handle_client(
                     .unwrap()
                     .to_string_lossy()
                     .to_string();
-                let message = format!("{}{}\n", "%{F#FFA500}", name);
+                let message = format!("{}\n", name);
                 let _ = stream.write_all(&message.as_bytes()).await;
             }
             "progress" => {

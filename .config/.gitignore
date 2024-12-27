@@ -4,12 +4,10 @@
 !.gitignore
 
 # whitelist
-!i3/
-!rofi/
+!hypr/
 !ranger/
-!picom/
 !nvim/
-!polybar/
+!waybar/
 !systemd/
 !vivid/
 !alacritty/
