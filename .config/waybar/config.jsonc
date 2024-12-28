@@ -1,0 +1,269 @@
+[
+    {
+        "mode": "overlay",
+        "fixed-center": false,
+        "name": "bar1",
+        "output": ["eDP-1", "DP-1"],
+        "margin": "4px 12px 0px 11px",
+        "layer": "bottom",
+        "position": "top",
+        "modules-left": [
+            "hyprland/workspaces"
+        ],
+        "modules-center": [
+            "custom/prev",
+            "custom/start",
+            "custom/pause",
+            "custom/next",
+            "custom/song",
+            "custom/progress"
+        ],
+        "modules-right": [
+            "custom/cpu-icon",
+            "cpu",
+            "custom/memory-icon",
+            "memory",
+            "pulseaudio",
+            "custom/keyboard-icon",
+            "sway/language",
+            "battery",
+            "bluetooth",
+            "custom/network",
+            "custom/date-icon",
+            "custom/date",
+            "custom/clock-icon",
+            "clock",
+            "custom/power"
+        ],
+        "hyprland/workspaces": {
+            "format": "{icon}",
+            "disable-scroll": true
+        },
+        "custom/next": {
+            "format": "",
+            "on-click": "/home/admin/.config/waybar/music_player/client/target/debug/client next"
+        },
+        "custom/start": {
+            "interval": 2,
+            "format": "{}",
+            "exec": "/home/admin/.config/waybar/music_player/client/target/debug/client stopped",
+            "on-click": "/home/admin/.config/waybar/music_player/client/target/debug/client start"
+        },
+        "custom/pause": {
+            "interval": 2,
+            "format": "{}",
+            "exec": "/home/admin/.config/waybar/music_player/client/target/debug/client paused",
+            "on-click": "/home/admin/.config/waybar/music_player/client/target/debug/client pause"
+        },
+        "custom/prev": {
+            "format": "",
+            "on-click": "/home/admin/.config/waybar/music_player/client/target/debug/client prev"
+        },
+        "custom/song": {
+            "interval": 3,
+            "format": "{}",
+            "exec": "/home/admin/.config/waybar/music_player/client/target/debug/client song"
+        },
+        "custom/progress": {
+            "interval": 3,
+            "format": "{}",
+            "exec": "/home/admin/.config/waybar/music_player/client/target/debug/client progress"
+        },
+        "custom/cpu-icon": {
+            "format": ""
+        },
+        "cpu": {
+            "interval": 5,
+            "format": "{}%",
+            "max-length": 10
+        },
+        "custom/memory-icon": {
+            "format": ""
+        },
+        "memory": {
+            "interval": 5,
+            "format": "{}%",
+            "max-length": 10
+        },
+        "pulseaudio": {
+            "format": "{volume}% {icon}",
+            "format-bluetooth": "{volume}% {icon}",
+            "format-muted": "󰖁",
+            "format-icons": {
+                "alsa_output.pci-0000_00_1f.3.analog-stereo": "",
+                "alsa_output.pci-0000_00_1f.3.analog-stereo-muted": "",
+                "headphone": "",
+                "hands-free": "",
+                "headset": "",
+                "phone": "",
+                "phone-muted": "",
+                "portable": "",
+                "car": "",
+                "default": [
+                    "",
+                    ""
+                ]
+            },
+            "scroll-step": 1,
+            "on-click": "pavucontrol",
+            "ignored-sinks": [
+                "Easy Effects Sink"
+            ]
+        },
+        "custom/keyboard-icon": {
+            "format": "",
+            "on-click": "/home/admin/.config/waybar/keyboard/toggle_keyboard_layout.sh"
+        },
+        "sway/language": {
+            "format": "{}",
+            "on-click": "/home/admin/.config/waybar/keyboard/toggle_keyboard_layout.sh"
+        },
+        "battery": {
+            "format": "{icon}",
+            "format-alt": "{time} {icon}",
+            "format-alt-click": "click-right",
+            "format-icons": [
+                "",
+                "",
+                "",
+                ""
+            ],
+            "format-charging": "",
+            "interval": 30,
+            "states": {
+                "warning": 45,
+                "critical": 20
+            }
+        },
+        "bluetooth": {
+            "format": ""
+        },
+        "custom/network": {
+            "format": ""
+        },
+        "custom/clock-icon": {
+            "format": ""
+        },
+        "clock": {
+            "interval": 60,
+            "format": "{:%H:%M %p}",
+            "max-length": 25
+        },
+        "custom/date-icon": {
+            "format": ""
+        },
+        "custom/date": {
+            "interval": 86400, // Update once a day
+            "exec": "date +'%A %B %Y'",
+            "format": "{}"
+        },
+        "custom/power": {
+            "format": "⏻ ",
+            "on-click": "shutdown -h now"
+        }
+    },
+    {
+        "mode": "overlay",
+        "output": ["eDP-1", "DP-1"],
+        "name": "bar2",
+        "margin": "9px 357px 0px 11px",
+        "layer": "bottom",
+        "position": "top",
+        "modules-right": [
+            "network"
+        ],
+        "network": {
+            "interface": "wlan0",
+            "format-wifi": "{icon}",
+            "format-icons": [
+                "",
+                "",
+                "",
+                ""
+            ],
+            "format-ethernet": "",
+            "format-disconnected": ""
+        }
+    },
+    {
+        "mode": "overlay",
+        "name": "bar3",
+        "fixed-center": false,
+        "output": "DP-2",
+        "margin": "4px 12px 0px 11px",
+        "layer": "bottom",
+        "position": "top",
+        "modules-left": [
+            "hyprland/workspaces"
+        ],
+        "modules-center": [
+            "custom/prev",
+            "custom/start",
+            "custom/pause",
+            "custom/next",
+            "custom/song",
+            "custom/progress"
+        ],
+        "modules-right": [
+            "custom/date-icon",
+            "custom/date",
+            "custom/clock-icon",
+            "clock",
+            "custom/power"
+        ],
+        "hyprland/workspaces": {
+            "format": "{icon}",
+            "disable-scroll": true
+        },
+        "custom/next": {
+            "format": "",
+            "on-click": "/home/admin/.config/waybar/music_player/client/target/debug/client next"
+        },
+        "custom/start": {
+            "interval": 2,
+            "format": "{}",
+            "exec": "/home/admin/.config/waybar/music_player/client/target/debug/client stopped",
+            "on-click": "/home/admin/.config/waybar/music_player/client/target/debug/client start"
+        },
+        "custom/pause": {
+            "interval": 2,
+            "format": "{}",
+            "exec": "/home/admin/.config/waybar/music_player/client/target/debug/client paused",
+            "on-click": "/home/admin/.config/waybar/music_player/client/target/debug/client pause"
+        },
+        "custom/prev": {
+            "format": "",
+            "on-click": "/home/admin/.config/waybar/music_player/client/target/debug/client prev"
+        },
+        "custom/song": {
+            "interval": 3,
+            "format": "{}",
+            "exec": "/home/admin/.config/waybar/music_player/client/target/debug/client song"
+        },
+        "custom/progress": {
+            "interval": 3,
+            "format": "{}",
+            "exec": "/home/admin/.config/waybar/music_player/client/target/debug/client progress"
+        },
+        "custom/clock-icon": {
+            "format": ""
+        },
+        "clock": {
+            "interval": 60,
+            "format": "{:%H:%M %p}",
+            "max-length": 25
+        },
+        "custom/date-icon": {
+            "format": ""
+        },
+        "custom/date": {
+            "interval": 86400, // Update once a day
+            "exec": "date +'%A %B %Y'",
+            "format": "{}"
+        },
+        "custom/power": {
+            "format": "⏻ ",
+            "on-click": "shutdown -h now"
+        }
+    }
+]
