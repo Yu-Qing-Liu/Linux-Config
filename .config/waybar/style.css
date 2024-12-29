@@ -1,6 +1,6 @@
 * {
     /* `otf-font-awesome` is required to be installed for icons */
-    font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+    font-family: FontAwesome;
     font-weight: bold;
     font-size: 12px;
 }
@@ -42,7 +42,7 @@ window#waybar.bar2 {
 
 #battery {
     color: #ffffff;
-    font-size: 16px;
+    font-size: 14px;
     padding: 0 16px 0 10px;
     background-color: rgba(0,0,0,0.5);
 }
@@ -50,14 +50,14 @@ window#waybar.bar2 {
 #bluetooth {
     color: #003399;
     font-size: 18px;
-    padding: 0 8px 0 0px;
+    padding: 0 12px 0 0px;
     background-color: rgba(0,0,0,0.5);
 }
 
 #custom-network {
     color: #ffffff;
     font-size: 19px;
-    padding: 0 24px 0 0;
+    padding: 0 16px 0 0;
     background-color: rgba(0,0,0,0.5);
     border-top-right-radius: 12px;
     border-bottom-right-radius: 12px;
@@ -129,14 +129,14 @@ window#waybar.bar2 {
 #custom-power {
     margin-left: 10px;
     color: #ffffff;
-    padding: 0 6px 0 10px;
+    padding: 0 10px 0 10px;
     background-color: rgba(0,0,0,0.5);
     border-radius: 12px;
 }
 
 #custom-prev {
     color: #ffffff;
-    padding: 0 10px 0 20px;
+    padding: 0 0 0 20px;
     background-color: rgba(0,0,0,0.5);
     border-top-left-radius: 12px;
     border-bottom-left-radius: 12px;
