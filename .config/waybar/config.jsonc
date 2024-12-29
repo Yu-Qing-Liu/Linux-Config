@@ -164,30 +164,7 @@
     },
     {
         "mode": "overlay",
-        "output": ["eDP-1", "DP-1"],
         "name": "bar2",
-        "margin": "9px 357px 0px 11px",
-        "layer": "bottom",
-        "position": "top",
-        "modules-right": [
-            "network"
-        ],
-        "network": {
-            "interface": "wlan0",
-            "format-wifi": "{icon}",
-            "format-icons": [
-                "",
-                "",
-                "",
-                ""
-            ],
-            "format-ethernet": "",
-            "format-disconnected": ""
-        }
-    },
-    {
-        "mode": "overlay",
-        "name": "bar3",
         "fixed-center": false,
         "output": "DP-2",
         "margin": "4px 12px 0px 11px",

@@ -13,10 +13,6 @@ window#waybar.bar2 {
     background-color: rgba(0,0,0,0);
 }
 
-window#waybar.bar3 {
-    background-color: rgba(0,0,0,0);
-}
-
 #workspaces button {
     padding: 0 16px 0 16px;
     margin: 0 4px 0 0;
@@ -58,14 +54,8 @@ window#waybar.bar3 {
     background-color: rgba(0,0,0,0.5);
 }
 
-#network {
-    color: #ffffff;
-    font-size: 16px;
-    padding: 0 16px 0 0;
-}
-
 #custom-network {
-    color: #666666;
+    color: #ffffff;
     font-size: 19px;
     padding: 0 24px 0 0;
     background-color: rgba(0,0,0,0.5);
