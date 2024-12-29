@@ -1,0 +1,10 @@
+[Unit]
+Description=Music Server
+After=network.target
+
+[Service]
+ExecStart=/home/admin/.config/waybar/music_player/server/target/debug/server
+Restart=always
+
+[Install]
+WantedBy=default.target
