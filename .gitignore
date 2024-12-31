@@ -7,6 +7,7 @@
 !.gitconfig
 !.xinitrc
 !.Xresources
+!.Xauthority
 !.bashrc
 !.bash_profile
 
