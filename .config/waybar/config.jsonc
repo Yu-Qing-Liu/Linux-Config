@@ -116,7 +116,7 @@
                 "",
                 ""
             ],
-            "format-charging": "",
+            "format-charging": "",
             "interval": 30,
             "states": {
                 "warning": 45,
@@ -142,7 +142,7 @@
         },
         "custom/date": {
             "interval": 86400, // Update once a day
-            "exec": "date +'%A %B %Y'",
+            "exec": "date +'%A, %B %d, %Y'",
             "format": "{}"
         },
         "custom/power": {
@@ -215,7 +215,7 @@
         },
         "clock": {
             "interval": 60,
-            "format": "{:%H:%M %p}",
+            "format": "{:%I:%M %p}",
             "max-length": 25
         },
         "custom/date-icon": {
@@ -223,7 +223,7 @@
         },
         "custom/date": {
             "interval": 86400, // Update once a day
-            "exec": "date +'%A %B %d %Y'",
+            "exec": "date +'%A, %B %d, %Y'",
             "format": "{}"
         },
         "custom/power": {

@@ -47,5 +47,6 @@ size = 16
 
 [keyboard]
 bindings = [
-    { key = "Enter", mods = "Control|Shift", action = "CreateNewWindow" },
+    { key = "Enter", mods = "Alt", action = "CreateNewWindow" },
+    { key = "R", mods = "Alt", chars = "ranger" }
 ]
