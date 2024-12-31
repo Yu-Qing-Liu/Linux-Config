@@ -23,6 +23,7 @@
             "cpu",
             "custom/memory-icon",
             "memory",
+            "custom/audio-icon",
             "pulseaudio",
             "custom/keyboard-icon",
             "sway/language",
@@ -85,25 +86,12 @@
             "format": "{}%",
             "max-length": 10
         },
+        "custom/audio-icon": {
+            "format": ""  
+        },
         "pulseaudio": {
-            "format": "{volume}% {icon}",
-            "format-bluetooth": "{volume}% {icon}",
-            "format-muted": "󰖁",
-            "format-icons": {
-                "alsa_output.pci-0000_00_1f.3.analog-stereo": "",
-                "alsa_output.pci-0000_00_1f.3.analog-stereo-muted": "",
-                "headphone": "",
-                "hands-free": "",
-                "headset": "",
-                "phone": "",
-                "phone-muted": "",
-                "portable": "",
-                "car": "",
-                "default": [
-                    "",
-                    ""
-                ]
-            },
+            "format": "{volume}%",
+            "format-bluetooth": "{volume}%",
             "scroll-step": 1,
             "on-click": "pavucontrol",
             "ignored-sinks": [
@@ -235,7 +223,7 @@
         },
         "custom/date": {
             "interval": 86400, // Update once a day
-            "exec": "date +'%A %B %Y'",
+            "exec": "date +'%A %B %d %Y'",
             "format": "{}"
         },
         "custom/power": {
