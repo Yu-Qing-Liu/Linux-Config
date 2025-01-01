@@ -6,11 +6,11 @@
 }
 
 window#waybar.bar1 {
-    background-color: rgba(25,25,25,0.0);
+    background-color: rgba(0,0,0,0.0);
 }
 
 window#waybar.bar2 {
-    background-color: rgba(25,25,25,0.0);
+    background-color: rgba(0,0,0,0.0);
 }
 
 #workspaces button {
@@ -32,34 +32,34 @@ window#waybar.bar2 {
     color:#ffa500;
     font-size: 14px;
     padding: 0 10px 0 8px;
-    background-color:rgba(25,25,25,0.65);
+    background-color:rgba(0,0,0,0.85);
 }
 
 #language {
     color: #ffffff;
     padding: 4px 0 0 0;
-    background-color:rgba(25,25,25,0.65);
+    background-color:rgba(0,0,0,0.85);
 }
 
 #battery {
     color: #ffffff;
     font-size: 16px;
     padding: 0 16px 0 10px;
-    background-color:rgba(25,25,25,0.65);
+    background-color:rgba(0,0,0,0.85);
 }
 
 #bluetooth {
     color: #0082FC;
     font-size: 18px;
     padding: 0 8px 0 0px;
-    background-color:rgba(25,25,25,0.65);
+    background-color:rgba(0,0,0,0.85);
 }
 
 #custom-network {
     color: #ffffff;
     font-size: 19px;
     padding: 0 24px 0 0;
-    background-color:rgba(25,25,25,0.65);
+    background-color:rgba(0,0,0,0.85);
     border-top-right-radius: 12px;
     border-bottom-right-radius: 12px;
 }
@@ -68,7 +68,7 @@ window#waybar.bar2 {
     color: #ffa500;
     font-size: 16px;
     padding: 0 8px 0 16px;
-    background-color:rgba(25,25,25,0.65);
+    background-color:rgba(0,0,0,0.85);
     border-top-left-radius: 12px;
     border-bottom-left-radius: 12px;
 }
@@ -76,20 +76,20 @@ window#waybar.bar2 {
 #cpu {
     color: #ffffff;
     padding: 4px 10px 0 0;
-    background-color:rgba(25,25,25,0.65);
+    background-color:rgba(0,0,0,0.85);
 }
 
 #custom-memory-icon {
     color: #ffa500;
     font-size: 14px;
     padding: 0 4px 0 0;
-    background-color:rgba(25,25,25,0.65);
+    background-color:rgba(0,0,0,0.85);
 }
 
 #memory {
     color: #ffffff;
     padding: 4px 0 0 0;
-    background-color:rgba(25,25,25,0.65);
+    background-color:rgba(0,0,0,0.85);
 }
 
 #custom-clock-icon {
@@ -97,7 +97,7 @@ window#waybar.bar2 {
     color: #ffa500;
     font-size: 16px;
     padding: 0 10px 0 16px;
-    background-color:rgba(25,25,25,0.65);
+    background-color:rgba(0,0,0,0.85);
     border-top-left-radius: 12px;
     border-bottom-left-radius: 12px;
 }
@@ -105,7 +105,7 @@ window#waybar.bar2 {
 #clock {
     color: #ffffff;
     padding: 4px 16px 0 0;
-    background-color:rgba(25,25,25,0.65);
+    background-color:rgba(0,0,0,0.85);
     border-top-right-radius: 12px;
     border-bottom-right-radius: 12px;
 }
@@ -115,7 +115,7 @@ window#waybar.bar2 {
     color: #ffa500;
     font-size: 16px;
     padding: 0 10px 0 16px;
-    background-color:rgba(25,25,25,0.65);
+    background-color:rgba(0,0,0,0.85);
     border-top-left-radius: 12px;
     border-bottom-left-radius: 12px;
 }
@@ -123,7 +123,7 @@ window#waybar.bar2 {
 #custom-date {
     color: #ffffff;
     padding: 4px 16px 0 0;
-    background-color:rgba(25,25,25,0.65);
+    background-color:rgba(0,0,0,0.85);
     border-top-right-radius: 12px;
     border-bottom-right-radius: 12px;
 }
@@ -132,14 +132,14 @@ window#waybar.bar2 {
     margin-left: 10px;
     color: #ffffff;
     padding: 0px 5px 0 10px;
-    background-color:rgba(25,25,25,0.65);
+    background-color:rgba(0,0,0,0.85);
     border-radius: 12px;
 }
 
 #custom-prev {
     color: #ffffff;
     padding: 0 10px 0 20px;
-    background-color:rgba(25,25,25,0.65);
+    background-color:rgba(0,0,0,0.85);
     border-top-left-radius: 12px;
     border-bottom-left-radius: 12px;
 }
@@ -147,31 +147,31 @@ window#waybar.bar2 {
 #custom-start {
     color: #ffffff;
     padding: 0 10px 0 10px;
-    background-color:rgba(25,25,25,0.65);
+    background-color:rgba(0,0,0,0.85);
 }
 
 #custom-pause {
     color: #ffffff;
-    background-color:rgba(25,25,25,0.65);
+    background-color:rgba(0,0,0,0.85);
 }
 
 #custom-next {
     color: #ffffff;
     padding: 0 10px 0 10px;
-    background-color:rgba(25,25,25,0.65);
+    background-color:rgba(0,0,0,0.85);
 }
 
 #custom-song {
     color: #ffffff;
     padding: 4px 10px 0 10px;
-    background-color:rgba(25,25,25,0.65);
+    background-color:rgba(0,0,0,0.85);
 }
 
 #custom-progress {
     color: #ffffff;
     padding: 0 18px 0 8px;
     font-size: 5px;
-    background-color:rgba(25,25,25,0.65);
+    background-color:rgba(0,0,0,0.85);
     border-top-right-radius: 12px;
     border-bottom-right-radius: 12px;
 }
@@ -180,11 +180,11 @@ window#waybar.bar2 {
     color:#ffa500;
     padding: 0 8px 0 8px;
     font-size: 14px;
-    background-color:rgba(25,25,25,0.65);
+    background-color:rgba(0,0,0,0.85);
 }
 
 #pulseaudio {
     color: #ffffff;
     padding: 4px 0 0 4px;
-    background-color:rgba(25,25,25,0.65);
+    background-color:rgba(0,0,0,0.85);
 }
