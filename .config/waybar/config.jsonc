@@ -103,7 +103,7 @@
             "on-click": "/home/admin/.config/waybar/keyboard/toggle_keyboard_layout.sh"
         },
         "hyprland/language": {
-            "format": "{}",
+            "format": "{short}",
             "on-click": "/home/admin/.config/waybar/keyboard/toggle_keyboard_layout.sh"
         },
         "battery": {
