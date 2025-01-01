@@ -57,6 +57,10 @@ local config = {
             name = "JavaSE-21",
             path = "/usr/lib/jvm/java-21-openjdk",
           },
+          {
+            name = "JavaSE-23",
+            path = "/usr/lib/jvm/java-23-openjdk",
+          },
         }
       },
       maven = {
@@ -75,10 +79,10 @@ local config = {
       format = {
         enabled = true,
         -- Formatting works by default, but you can refer to a specific file/URL if you choose
-        -- settings = {
-        --   url = "https://github.com/google/styleguide/blob/gh-pages/intellij-java-google-style.xml",
-        --   profile = "GoogleStyle",
-        -- },
+        settings = {
+          url = "https://github.com/google/styleguide/blob/gh-pages/intellij-java-google-style.xml",
+          profile = "GoogleStyle",
+        },
       },
     },
     completion = {
@@ -131,4 +135,3 @@ end
 
 -- This starts a new client & server, or attaches to an existing client & server based on the `root_dir`.
 jdtls.start_or_attach(config)
-

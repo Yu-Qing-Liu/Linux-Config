@@ -87,7 +87,7 @@ return {
         pylsp = {
           plugins = {
             pycodestyle = {
-              maxLineLength = 120,
+              maxLineLength = 140,
               ignore = { "E501" },
             },
           },
