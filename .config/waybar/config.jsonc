@@ -48,7 +48,7 @@
             "interval": 2,
             "format": "{}",
             "exec": "/home/admin/.config/waybar/music_player/client/target/debug/client stopped",
-            "on-click": "/home/admin/.config/waybar/music_player/client/target/debug/client start"
+            "on-click": "/home/admin/.config/waybar/music_player/client/target/debug/client start'"
         },
         "custom/pause": {
             "interval": 2,
