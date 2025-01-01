@@ -96,18 +96,18 @@ async fn handle_progress(
     let duration = mp3_duration::from_file(&file).unwrap_or(Duration::from_secs(0));
     if duration > Duration::from_secs(0) {
         let progress = f64::min(1.0, current_time.as_secs_f64() / duration.as_secs_f64());
-        let bar_length = 25;
+        let bar_length = 50;
         let filled_length = (bar_length as f64 * progress).round() as usize;
         let empty_length = bar_length - filled_length;
         let bar = format!(
             "{}{}{}",
-            "━".repeat(filled_length),
-            "━".repeat(empty_length),
+            "▰".repeat(filled_length),
+            "▱".repeat(empty_length),
             "\n"
         );
         return bar;
     } else {
-        return "━━━━━━━━━━━━━━━━━━━━━━━━━\n".to_string();
+        return "▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰\n".to_string();
     }
 }
 

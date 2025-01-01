@@ -26,7 +26,7 @@
             "custom/audio-icon",
             "pulseaudio",
             "custom/keyboard-icon",
-            "sway/language",
+            "hyprland/language",
             "battery",
             "bluetooth",
             "custom/network",
@@ -102,7 +102,7 @@
             "format": "",
             "on-click": "/home/admin/.config/waybar/keyboard/toggle_keyboard_layout.sh"
         },
-        "sway/language": {
+        "hyprland/language": {
             "format": "{}",
             "on-click": "/home/admin/.config/waybar/keyboard/toggle_keyboard_layout.sh"
         },
@@ -134,7 +134,7 @@
         },
         "clock": {
             "interval": 60,
-            "format": "{:%H:%M %p}",
+            "format": "{:%I:%M %p}",
             "max-length": 25
         },
         "custom/date-icon": {
