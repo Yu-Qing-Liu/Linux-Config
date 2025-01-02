@@ -23,5 +23,7 @@ export EDITOR=nvim
 export VISUAL=nvim
 export LS_COLORS="$(vivid generate ~/.config/vivid/themes/kanagawa.yml)"
 export TEXINPUTS="/usr/share/texmf-dist/tex/latex:$TEXINPUTS"
+export ACADOS_SOURCE_DIR="/acados"
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:"/acados/lib"
 
 PS1='[\u@\h \W]\$ '

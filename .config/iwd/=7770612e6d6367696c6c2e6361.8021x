@@ -1,5 +1,5 @@
 [Security]
-EAP-METHOD=PEAP
+EAP-Method=PEAP
 EAP-Identity=#username
 EAP-PEAP-CACert=/etc/ca-certificates/extracted/cadir/DigiCert_Global_Root_CA.pem
 EAP-PEAP-Phase2-Method=MSCHAPV2
