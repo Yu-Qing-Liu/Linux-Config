@@ -116,7 +116,7 @@
                 "",
                 ""
             ],
-            "format-charging": "",
+            "format-charging": " ",
             "interval": 30,
             "states": {
                 "warning": 45,

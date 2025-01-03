@@ -79,8 +79,14 @@ return {
       cmd = { "dart", 'language-server', '--protocol=lsp' },
     }
 
+    -- C++
+    lspconfig.clangd.setup {
+      cmd = require'lspcontainers'.command('clangd')
+    }
+
      -- Python LSP settings
     lspconfig.pylsp.setup {
+      cmd = require'lspcontainers'.command('pylsp'),
       on_attach = lsp_attach,
       capabilities = lsp_capabilities,
       settings = {
